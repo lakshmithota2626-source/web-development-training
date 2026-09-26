@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Web Development Training</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #2563eb;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #374151;
+      margin-left: 25px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 7%;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero small {
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      line-height: 1.1;
+      margin: 15px 0 20px;
+    }
+
+    .hero p {
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 25px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .hero-button:hover {
+      background: #1d4ed8;
+    }
+
+    .hero-box {
+      background: #111827;
+      color: white;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+    }
+
+    .hero-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .hero-box div {
+      padding: 13px 0;
+      border-bottom: 1px solid #374151;
+    }
+
+    .hero-box div:last-child {
+      border-bottom: none;
+    }
+
+    /* Courses */
+    .courses {
+      background: white;
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #667085;
+    }
+
+    .course-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .course {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      padding: 28px;
+      transition: 0.25s;
+    }
+
+    .course:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      border-color: #93c5fd;
+    }
+
+    .number {
+      width: 45px;
+      height: 45px;
+      background: #dbeafe;
+      color: #2563eb;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .course h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .course p {
+      color: #667085;
+      line-height: 1.6;
+      min-height: 75px;
+    }
+
+    .course a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .course a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 35px;
+      background: #111827;
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        margin-left: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">WebDev Training</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+
+    <div>
+      <small>6-DAY WEB DEVELOPMENT PROGRAM</small>
+
+      <h1>
+        Learn Web Development<br>
+        By Building Projects.
+      </h1>
+
+      <p>
+        A complete practical training program covering HTML, CSS,
+        JavaScript, DOM, AJAX, UI development and real-world projects.
+      </p>
+
+      <a href="#courses" class="hero-button">
+        Explore Training →
+      </a>
+    </div>
+
+    <div class="hero-box">
+      <h2>What You'll Learn</h2>
+
+      <div>01 — Networking & Architecture</div>
+      <div>02 — HTML5 & CSS3</div>
+      <div>03 — JavaScript & DOM</div>
+      <div>04 — JavaScript Advanced</div>
+      <div>05 — Restaurant Website</div>
+      <div>06 — Portfolio & Capstone</div>
+    </div>
+
+  </section>
+
+  <section class="courses" id="courses">
+
+    <div class="section-title">
+      <h2>Training Modules</h2>
+      <p>Choose a day and start learning.</p>
+    </div>
+
+    <div class="course-grid">
+
+      <div class="course">
+        <div class="number">01</div>
+        <h3>Networking & Architecture</h3>
+        <p>
+          Learn client-server architecture, HTTP, HTTPS and
+          request-response communication.
+        </p>
+        <a href="./Day-1/">Open Day 1 →</a>
+      </div>
+
+      <div class="course">
+        <div class="number">02</div>
+        <h3>HTML5 & CSS3</h3>
+        <p>
+          Learn modern HTML5, CSS3 and responsive web design
+          through practical exercises.
+        </p>
+        <a href="./Day-2/">Open Day 2 →</a>
+      </div>
+
+      <div class="course">
+        <div class="number">03</div>
+        <h3>JavaScript & DOM</h3>
+        <p>
+          Practice JavaScript arrays, functions, DOM manipulation
+          and interactive applications.
+        </p>
+        <a href="./Day-3/">Open Day 3 →</a>
+      </div>
+
+      <div class="course">
+        <div class="number">04</div>
+        <h3>JavaScript Advanced</h3>
+        <p>
+          Explore OOP, jQuery, AJAX, UI concepts and
+          interactive JavaScript applications.
+        </p>
+        <a href="./Day-4/">Open Day 4 →</a>
+      </div>
+
+      <div class="course">
+        <div class="number">05</div>
+        <h3>Restaurant Website</h3>
+        <p>
+          Build and explore the L'AURA Artisan Kitchen &
+          Bistro website project.
+        </p>
+        <a href="./Day-5/">Open Day 5 →</a>
+      </div>
+
+      <div class="course">
+        <div class="number">06</div>
+        <h3>Portfolio & Capstone</h3>
+        <p>
+          Complete the training with a portfolio project and
+          final course documentation.
+        </p>
+        <a href="./Day-6/">Open Day 6 →</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Web Development Training
+  </footer>
+
+</body>
+</html>
