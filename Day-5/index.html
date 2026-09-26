@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'AURA Artisan Kitchen & Bistro | Gourmet Dining & Digital Menu</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation Bar -->
+    <header class="header">
+        <div class="container nav-wrapper">
+            <a href="#" class="brand-logo">
+                <span class="logo-accent">L'AURA</span>
+                <span class="logo-sub">ARTISAN BISTRO</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <a href="#menu-section" class="active">Menu</a>
+                <a href="#about-section">Our Story</a>
+                <a href="#chef-specials">Chef's Picks</a>
+                <a href="#reserve-section">Reservations</a>
+            </nav>
+
+            <!-- Order / Cart Trigger -->
+            <div class="header-actions">
+                <button class="btn btn-reserve" id="btnOpenReserve">Book Table</button>
+                <button class="cart-btn" id="btnToggleCart" aria-label="View Order Cart">
+                    <span class="cart-icon">🛍️</span>
+                    <span class="cart-count" id="cartCountBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">✨ MICHELIN RECOGNIZED • FARM TO TABLE</div>
+            <h1 class="hero-title">Culinary Artistry <br><span class="italic-serif">Crafted for the Senses</span></h1>
+            <p class="hero-desc">
+                Experience a symphony of organic seasonal ingredients, wood-fired gastronomy, and avant-garde flavors curated by Executive Chef Mateo Rossi.
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu-section" class="btn btn-primary">Explore Menu</a>
+                <a href="#reserve-section" class="btn btn-glass">Reserve a Table</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="container">
+
+        <!-- ===================================================================
+             MENU SECTION
+             =================================================================== -->
+        <section class="menu-section" id="menu-section">
+            
+            <div class="section-heading">
+                <span class="sub-tag">Seasonal Selection</span>
+                <h2>The Gastronomic Menu</h2>
+                <p>All ingredients are sustainably sourced from organic regional growers and artisan producers.</p>
+            </div>
+
+            <!-- Search & Dietary Filters -->
+            <div class="filter-wrapper">
+                
+                <!-- Category Tabs -->
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="tab-btn active" data-category="all">🍽️ All Dishes</button>
+                    <button class="tab-btn" data-category="starters">🥗 Starters & Tapas</button>
+                    <button class="tab-btn" data-category="mains">🥩 Chef's Mains</button>
+                    <button class="tab-btn" data-category="pasta">🍝 Woodfired & Pasta</button>
+                    <button class="tab-btn" data-category="desserts">🍰 Artisan Desserts</button>
+                    <button class="tab-btn" data-category="drinks">🍸 Cocktails & Elixirs</button>
+                </div>
+
+                <!-- Search & Dietary Checkboxes -->
+                <div class="search-dietary-row">
+                    <div class="search-box">
+                        <label for="menuSearchInput" class="visually-hidden">Search Menu</label>
+                        <input type="text" id="menuSearchInput" placeholder="🔍 Search menu (e.g. Truffle, Salmon, Wagyu)..." aria-label="Search menu items">
+                    </div>
+                    <div class="dietary-filters">
+                        <label class="diet-checkbox">
+                            <input type="checkbox" id="filterVeg">
+                            <span>🌿 Vegetarian</span>
+                        </label>
+                        <label class="diet-checkbox">
+                            <input type="checkbox" id="filterSpicy">
+                            <span>🌶️ Spicy</span>
+                        </label>
+                        <label class="diet-checkbox">
+                            <input type="checkbox" id="filterSpecial">
+                            <span>⭐ Chef's Pick</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Dynamically populated via script.js -->
+            </div>
+
+            <!-- Empty State for Search -->
+            <div class="empty-state hidden" id="emptyState">
+                <span class="empty-icon">🍽️</span>
+                <h3>No dishes found</h3>
+                <p>Try adjusting your search query or dietary filter.</p>
+                <button class="btn btn-outline btn-sm" id="btnResetFilters">Clear Filters</button>
+            </div>
+
+        </section>
+
+        <!-- ===================================================================
+             OUR STORY & CHEF'S PHILOSOPHY
+             =================================================================== -->
+        <section class="about-section" id="about-section">
+            <div class="about-card">
+                <div class="about-text">
+                    <span class="sub-tag">The Philosophy</span>
+                    <h2>From Earth & Flame to Plate</h2>
+                    <p>
+                        At L'AURA, we believe dining is an intimate emotional connection. Every reduction, infusion, and sourdough loaf is made in-house daily with 100% renewable solar power and heirloom grains.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="hl-item">
+                            <span class="hl-number">100%</span>
+                            <span class="hl-label">Organic Produce</span>
+                        </div>
+                        <div class="hl-item">
+                            <span class="hl-number">48 Hr</span>
+                            <span class="hl-label">Fermented Dough</span>
+                        </div>
+                        <div class="hl-item">
+                            <span class="hl-number">Zero</span>
+                            <span class="hl-label">Waste Kitchen</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="chef-quote-card">
+                        <p class="quote-text">"Cooking is the art of transforming nature into pure memory."</p>
+                        <span class="quote-author">— Mateo Rossi, Executive Chef</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             TABLE RESERVATION SECTION
+             =================================================================== -->
+        <section class="reserve-section" id="reserve-section">
+            <div class="reserve-card">
+                <div class="section-heading">
+                    <span class="sub-tag">Fine Dining Experience</span>
+                    <h2>Reserve Your Table</h2>
+                    <p>Tables for our evening tasting menu are available up to 30 days in advance.</p>
+                </div>
+
+                <form class="reserve-form" id="reserveForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resName">Full Name *</label>
+                            <input type="text" id="resName" placeholder="e.g. Balaji S." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resEmail">Email Address *</label>
+                            <input type="email" id="resEmail" placeholder="balaji@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resDate">Reservation Date *</label>
+                            <input type="date" id="resDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resTime">Preferred Time *</label>
+                            <select id="resTime" required>
+                                <option value="17:30">05:30 PM (Early Seating)</option>
+                                <option value="19:00" selected>07:00 PM (Prime Dinner)</option>
+                                <option value="20:30">08:30 PM (Late Tasting)</option>
+                                <option value="22:00">10:00 PM (Lounge & Cocktails)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resGuests">Number of Guests *</label>
+                            <select id="resGuests" required>
+                                <option value="2">2 Guests (Table for Two)</option>
+                                <option value="4" selected>4 Guests (Standard Table)</option>
+                                <option value="6">6 Guests (Private Booth)</option>
+                                <option value="8+">8+ Guests (Chef's Tasting Room)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="resNotes">Special Requests / Dietary Notes</label>
+                        <textarea id="resNotes" rows="2" placeholder="Anniversaries, seating preferences, allergies..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Confirm Table Reservation</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================
+         SLIDE-OUT ORDER CART DRAWER
+         =================================================================== -->
+    <div class="cart-backdrop" id="cartBackdrop"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <div class="cart-title">
+                <h3>Your Order</h3>
+                <span class="cart-item-count" id="cartDrawerCount">0 items</span>
+            </div>
+            <button class="cart-close" id="btnCloseCart">&times;</button>
+        </div>
+
+        <div class="cart-body" id="cartItemsList">
+            <!-- Dynamically populated -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-bill-row">
+                <span>Subtotal:</span>
+                <span id="billSubtotal">$0.00</span>
+            </div>
+            <div class="cart-bill-row">
+                <span>Tax (8%):</span>
+                <span id="billTax">$0.00</span>
+            </div>
+            <div class="cart-bill-row total-row">
+                <span>Grand Total:</span>
+                <span id="billGrandTotal">$0.00</span>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="btnCheckout">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Reservation Confirmation Modal -->
+    <div class="modal-backdrop" id="confirmationModal">
+        <div class="modal-card">
+            <button class="modal-close" id="btnCloseModal">&times;</button>
+            <div class="modal-badge">🎉 RESERVATION CONFIRMED</div>
+            <h2 id="modalTitle">Table Reserved!</h2>
+            <p id="modalDesc">We look forward to hosting you at L'AURA Bistro.</p>
+            <div class="modal-receipt" id="modalReceipt">
+                <!-- Dynamically populated -->
+            </div>
+            <button class="btn btn-primary btn-full" id="btnModalDone">Done</button>
+        </div>
+    </div>
+
+    <!-- ===================================================================
+         FOOTER
+         =================================================================== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <div class="brand-logo">
+                    <span class="logo-accent">L'AURA</span>
+                    <span class="logo-sub">ARTISAN BISTRO</span>
+                </div>
+                <p class="footer-desc">
+                    Artisanal culinary dining, organic harvest pairings, and signature handcrafted mixology.
+                </p>
+                <div class="footer-socials">
+                    <span>📸 @laura.bistro</span>
+                    <span>🌟 4.9 Star Rating (Google & Yelp)</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hours of Dining</h4>
+                <ul class="footer-list">
+                    <li><span>Mon – Thu:</span> 05:00 PM – 11:00 PM</li>
+                    <li><span>Fri – Sat:</span> 04:30 PM – Midnight</li>
+                    <li><span>Sunday Brunch:</span> 10:30 AM – 03:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Location & Contact</h4>
+                <ul class="footer-list">
+                    <li>📍 450 Gourmet Boulevard, Suite 100</li>
+                    <li>🏙️ San Francisco, CA 94107</li>
+                    <li>📞 +1 (415) 890-7721</li>
+                    <li>✉️ concierge@laurabistro.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>© 2026 L'AURA Artisan Kitchen & Bistro. Built for Web Development Training.</p>
+                <div class="footer-bottom-links">
+                    <a href="#menu-section">Menu</a>
+                    <a href="#about-section">Story</a>
+                    <a href="#reserve-section">Reservations</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>

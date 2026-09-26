@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Client-Server Communication</title>
+    <!-- Linking Google Fonts for clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- External CSS link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navigation / Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="badge">Day 01</span>
+                <span>Web Dev Training</span>
+            </div>
+            <div class="header-tag">Foundations: Networking & Architecture</div>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="container">
+
+        <!-- Hero Introduction -->
+        <section class="hero-section">
+            <h1 class="main-title">Client-Server Communication</h1>
+            <p class="subtitle">
+                Understand how web browsers and remote computers talk to each other to load websites, exchange data, and power the modern internet.
+            </p>
+        </section>
+
+        <!-- VISUAL REPRESENTATION SECTION -->
+        <section class="section visual-section" id="visual-demo">
+            <div class="section-header">
+                <h2>Visual Architecture & Live Simulation</h2>
+                <p>Click the action buttons below to observe how a request travels from the client to the server and how the response travels back.</p>
+            </div>
+
+            <!-- Visual Diagram Card -->
+            <div class="diagram-card">
+                <div class="diagram-canvas">
+                    
+                    <!-- 1. Client Node -->
+                    <div class="node-box client-box" id="clientNode">
+                        <div class="node-header">
+                            <span class="node-indicator"></span>
+                            <span>Client (Browser)</span>
+                        </div>
+                        <div class="node-icon">💻</div>
+                        <div class="node-details">
+                            <span class="node-role">Initiator</span>
+                            <code>IP: 192.168.1.45</code>
+                        </div>
+                    </div>
+
+                    <!-- 2. Network Transmission Channel -->
+                    <div class="network-channel">
+                        <div class="protocol-tag" id="protocolBadge">HTTP (Port 80)</div>
+
+                        <!-- Animated Packet Tracker (Request) -->
+                        <div class="packet-track request-track">
+                            <span class="track-label">Request (→)</span>
+                            <div class="packet-lane">
+                                <div class="packet packet-request" id="requestPacket">
+                                    <span>GET /index.html</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Animated Packet Tracker (Response) -->
+                        <div class="packet-track response-track">
+                            <span class="track-label">(←) Response</span>
+                            <div class="packet-lane">
+                                <div class="packet packet-response" id="responsePacket">
+                                    <span>200 OK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Server Node -->
+                    <div class="node-box server-box" id="serverNode">
+                        <div class="node-header">
+                            <span class="node-indicator"></span>
+                            <span>Server (Host)</span>
+                        </div>
+                        <div class="node-icon">🖥️</div>
+                        <div class="node-details">
+                            <span class="node-role">Listener / Processor</span>
+                            <code>IP: 93.184.216.34</code>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Simulation Control Panel -->
+                <div class="simulation-controls">
+                    <button class="btn btn-primary" id="btnGet">🚀 Send GET Request (Page Load)</button>
+                    <button class="btn btn-secondary" id="btnPost">📝 Send POST Request (Submit Form)</button>
+                    <button class="btn btn-warning" id="btn404">⚠️ Request Missing Page (404 Error)</button>
+                    <button class="btn btn-outline" id="btnToggleHttps">🔒 Toggle HTTPS Mode</button>
+                </div>
+
+                <!-- Live Message Inspector / Console -->
+                <div class="inspector-panel">
+                    <div class="inspector-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">Transmission Log & Header Inspector</span>
+                    </div>
+                    <div class="inspector-content" id="logConsole">
+                        <p class="log-line info">// Ready! Click any button above to simulate communication.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE CONCEPTS GRID -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Core Concepts Explained</h2>
+                <p>Master these six fundamental pillars of client-server architecture.</p>
+            </div>
+
+            <div class="cards-grid">
+                
+                <!-- 1. Client -->
+                <article class="concept-card">
+                    <div class="card-icon blue">👤</div>
+                    <span class="concept-number">01</span>
+                    <h3>1. Client</h3>
+                    <p>
+                        The <strong>Client</strong> is the device, browser, or software application that requests resources or services from a server.
+                    </p>
+                    <ul class="concept-list">
+                        <li><strong>Examples:</strong> Google Chrome, Safari, mobile apps, or command line tools like <code>curl</code>.</li>
+                        <li><strong>Role:</strong> Captures user actions (clicks, form inputs), packages them into requests, and renders the received server responses.</li>
+                    </ul>
+                </article>
+
+                <!-- 2. Server -->
+                <article class="concept-card">
+                    <div class="card-icon purple">🖥️</div>
+                    <span class="concept-number">02</span>
+                    <h3>2. Server</h3>
+                    <p>
+                        The <strong>Server</strong> is a powerful computer or program that continuously listens for incoming client requests, processes logic, and returns requested resources.
+                    </p>
+                    <ul class="concept-list">
+                        <li><strong>Examples:</strong> Nginx, Apache, Node.js/Express, Python/Django, Cloud servers.</li>
+                        <li><strong>Role:</strong> Hosts files (HTML, CSS, images), manages databases, handles business logic, and ensures data security.</li>
+                    </ul>
+                </article>
+
+                <!-- 3. Request -->
+                <article class="concept-card">
+                    <div class="card-icon cyan">📤</div>
+                    <span class="concept-number">03</span>
+                    <h3>3. Request</h3>
+                    <p>
+                        An <strong>HTTP Request</strong> is the formatted message sent by the client to ask the server to do something.
+                    </p>
+                    <div class="sub-points">
+                        <div class="mini-tag">Method (GET, POST, PUT, DELETE)</div>
+                        <div class="mini-tag">URL / Endpoint</div>
+                        <div class="mini-tag">Headers (User-Agent, Content-Type)</div>
+                        <div class="mini-tag">Body (Data payload for POST/PUT)</div>
+                    </div>
+                </article>
+
+                <!-- 4. Response -->
+                <article class="concept-card">
+                    <div class="card-icon green">📥</div>
+                    <span class="concept-number">04</span>
+                    <h3>4. Response</h3>
+                    <p>
+                        An <strong>HTTP Response</strong> is the reply sent back by the server answering the client's request.
+                    </p>
+                    <div class="sub-points">
+                        <div class="mini-tag">Status Codes (200 OK, 404 Not Found, 500 Error)</div>
+                        <div class="mini-tag">Headers (Content-Length, Cache-Control)</div>
+                        <div class="mini-tag">Body (HTML file, JSON data, Image stream)</div>
+                    </div>
+                </article>
+
+                <!-- 5. HTTP vs HTTPS -->
+                <article class="concept-card">
+                    <div class="card-icon amber">🔐</div>
+                    <span class="concept-number">05</span>
+                    <h3>5. HTTP vs. HTTPS</h3>
+                    <p>
+                        <strong>HTTP</strong> (Hypertext Transfer Protocol) transfers data as plain text. <strong>HTTPS</strong> adds an encrypted <strong>SSL/TLS</strong> layer.
+                    </p>
+                    <div class="comparison-box">
+                        <div class="comp-col">
+                            <strong>HTTP (Port 80)</strong>
+                            <span class="warning-text">Unencrypted — readable by eavesdroppers</span>
+                        </div>
+                        <div class="comp-col">
+                            <strong>HTTPS (Port 443)</strong>
+                            <span class="success-text">Encrypted & Secure — protects passwords and sensitive data</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. Basic Flow -->
+                <article class="concept-card full-width">
+                    <div class="card-icon rose">🔄</div>
+                    <span class="concept-number">06</span>
+                    <h3>6. Basic Request-Response Lifecycle Flow</h3>
+                    <p>Here is what happens step-by-step when a user types <code>https://example.com</code> into a browser:</p>
+                    
+                    <div class="flow-timeline">
+                        <div class="flow-step">
+                            <div class="step-badge">Step 1</div>
+                            <h4>User Action</h4>
+                            <p>User enters URL or clicks a link in the browser.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-badge">Step 2</div>
+                            <h4>DNS Resolution</h4>
+                            <p>Browser converts domain name into a server IP address.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-badge">Step 3</div>
+                            <h4>TCP / SSL Handshake</h4>
+                            <p>A reliable connection is established between client & server.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-badge">Step 4</div>
+                            <h4>Client Sends Request</h4>
+                            <p>Browser sends HTTP GET request with headers and parameters.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-badge">Step 5</div>
+                            <h4>Server Processes</h4>
+                            <p>Server executes code, queries database, and prepares response.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-badge">Step 6</div>
+                            <h4>Response & Render</h4>
+                            <p>Server sends back HTML/CSS/JS; browser renders UI.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>Web Development Training — <strong>Day 1 Module: Client-Server Architecture</strong></p>
+            <p class="footer-sub">HTML5 • CSS3 • JavaScript Vanilla</p>
+        </div>
+    </footer>
+
+    <!-- External JavaScript logic for the visual simulator -->
+    <script src="script.js"></script>
+</body>
+</html>
