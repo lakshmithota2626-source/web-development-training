@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: JavaScript OOP, jQuery, AJAX & Tic-Tac-Toe Game</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- jQuery UI Theme CSS (CDN) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="badge">Day 04</span>
+                <span>Web Dev Training</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#game-section" class="active">🎮 Tic-Tac-Toe</a>
+                <a href="#oop-section">🧱 OOP</a>
+                <a href="#jquery-section">⚡ jQuery & UI</a>
+                <a href="#ajax-section">🌐 AJAX & Fetch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ===================================================================
+             1. TIC-TAC-TOE CAPSTONE GAME
+             =================================================================== -->
+        <section class="section game-section" id="game-section">
+            <div class="section-header">
+                <span class="sub-tag">Playable Capstone</span>
+                <h2>Tic-Tac-Toe Championship</h2>
+                <p>Complete browser game featuring 2-Player (Pass & Play) & Single Player AI modes, scoreboard, and winning streak detection.</p>
+            </div>
+
+            <div class="game-wrapper">
+                
+                <!-- Game Sidebar & Controls -->
+                <div class="game-sidebar">
+                    <div class="card-panel">
+                        <h3>Game Settings</h3>
+                        
+                        <!-- Mode Selector -->
+                        <div class="mode-selector">
+                            <label>Opponent:</label>
+                            <div class="radio-cluster">
+                                <label class="radio-label">
+                                    <input type="radio" name="gameMode" value="pvp" checked id="modePvp">
+                                    <span>👥 2-Player (Pass & Play)</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gameMode" value="ai" id="modeAi">
+                                    <span>🤖 Single Player (vs AI)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Scoreboard -->
+                        <div class="scoreboard">
+                            <div class="score-card player-x">
+                                <span class="player-label">Player X</span>
+                                <span class="score-value" id="scoreX">0</span>
+                            </div>
+                            <div class="score-card ties">
+                                <span class="player-label">Ties</span>
+                                <span class="score-value" id="scoreTies">0</span>
+                            </div>
+                            <div class="score-card player-o">
+                                <span class="player-label" id="labelO">Player O</span>
+                                <span class="score-value" id="scoreO">0</span>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="game-actions">
+                            <button class="btn btn-primary btn-full" id="btnRestart">🔄 Restart Match</button>
+                            <button class="btn btn-outline btn-full" id="btnResetScores">🗑️ Reset Scores</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Board & Status -->
+                <div class="board-container">
+                    
+                    <!-- Turn Indicator -->
+                    <div class="turn-indicator" id="turnIndicator">
+                        <span>Turn:</span> <strong id="currentTurnBadge" class="turn-x">PLAYER X</strong>
+                    </div>
+
+                    <!-- 3x3 Grid Board -->
+                    <div class="tic-tac-toe-board" id="board">
+                        <button class="cell" data-index="0" aria-label="Cell 0"></button>
+                        <button class="cell" data-index="1" aria-label="Cell 1"></button>
+                        <button class="cell" data-index="2" aria-label="Cell 2"></button>
+                        <button class="cell" data-index="3" aria-label="Cell 3"></button>
+                        <button class="cell" data-index="4" aria-label="Cell 4"></button>
+                        <button class="cell" data-index="5" aria-label="Cell 5"></button>
+                        <button class="cell" data-index="6" aria-label="Cell 6"></button>
+                        <button class="cell" data-index="7" aria-label="Cell 7"></button>
+                        <button class="cell" data-index="8" aria-label="Cell 8"></button>
+                    </div>
+
+                    <!-- Game Result Banner -->
+                    <div class="game-banner" id="gameBanner">
+                        <h3 id="bannerMessage">Player X Wins!</h3>
+                        <button class="btn btn-primary btn-sm" id="btnBannerPlayAgain">Play Again</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             2. JAVASCRIPT OOP DEMONSTRATION SECTION
+             =================================================================== -->
+        <section class="section" id="oop-section">
+            <div class="section-header">
+                <span class="sub-tag">Modern Architecture</span>
+                <h2>JavaScript Object-Oriented Programming (OOP)</h2>
+                <p>Classes, inheritance, encapsulation, getters/setters, and polymorphism.</p>
+            </div>
+
+            <div class="grid-2-col">
+                <div class="card-panel">
+                    <h3>OOP Concept Highlights</h3>
+                    <ul class="feature-list">
+                        <li><strong>Classes & Constructor:</strong> <code>class Character { constructor(name) { ... } }</code></li>
+                        <li><strong>Inheritance:</strong> <code>class Wizard extends Character { ... }</code></li>
+                        <li><strong>Encapsulation:</strong> <code>#privateKey = "secret";</code></li>
+                        <li><strong>Getters & Setters:</strong> <code>get stats() { ... }</code></li>
+                        <li><strong>Static Methods:</strong> Utility functions attached to the class blueprint.</li>
+                    </ul>
+                </div>
+
+                <div class="card-panel">
+                    <h3>Live OOP Class Instantiator</h3>
+                    <div class="oop-form">
+                        <label for="heroNameInput" class="visually-hidden">Character Name</label>
+                        <input type="text" id="heroNameInput" placeholder="Enter Character Name (e.g. Thor)" class="form-control" aria-label="Character Name">
+                        <label for="heroRoleSelect" class="visually-hidden">Character Role</label>
+                        <select id="heroRoleSelect" class="form-control" aria-label="Select Character Role">
+                            <option value="Warrior">Warrior (Base Class)</option>
+                            <option value="Mage">Mage (Subclass with Super)</option>
+                            <option value="CyberBot">CyberBot (Encapsulated AI)</option>
+                        </select>
+                        <button class="btn btn-purple btn-full" id="btnCreateHero">Create OOP Instance</button>
+                    </div>
+                    <div class="console-box mt-3" id="oopConsole">
+                        <pre><code id="oopOutputText">// Click Create Instance to test JavaScript Classes...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             3. jQuery & jQuery UI SHOWCASE SECTION
+             =================================================================== -->
+        <section class="section" id="jquery-section">
+            <div class="section-header">
+                <span class="sub-tag">Library & UI Suite</span>
+                <h2>jQuery & jQuery UI Showcase</h2>
+                <p>Interactive DOM manipulation, animation effects, event delegation, and UI widgets.</p>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- jQuery Effects & DOM -->
+                <div class="card-panel">
+                    <h3>jQuery DOM & Animation Effects</h3>
+                    <div class="btn-cluster mb-3">
+                        <button class="btn btn-sm btn-primary" id="btnJqFade">Fade Toggle</button>
+                        <button class="btn btn-sm btn-cyan" id="btnJqSlide">Slide Toggle</button>
+                        <button class="btn btn-sm btn-amber" id="btnJqHighlight">Add Class</button>
+                    </div>
+
+                    <div class="jq-box" id="jqTargetBox">
+                        <p>This element is manipulated dynamically via jQuery selectors and animations!</p>
+                    </div>
+
+                    <div class="jq-live-filter mt-3">
+                        <input type="text" id="jqSearchBox" placeholder="🔍 Live filter skills list below..." class="form-control mb-2" aria-label="Filter skills list">
+                        <ul class="jq-list" id="jqList">
+                            <li class="jq-item">JavaScript ES6+</li>
+                            <li class="jq-item">jQuery DOM Manipulation</li>
+                            <li class="jq-item">jQuery UI Accordion & Draggable</li>
+                            <li class="jq-item">Asynchronous AJAX & Fetch</li>
+                            <li class="jq-item">Object-Oriented Architecture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- jQuery UI Widgets (Accordion & Datepicker) -->
+                <div class="card-panel">
+                    <h3>jQuery UI Widgets</h3>
+                    
+                    <div class="mb-3">
+                        <label for="uiDatepicker" class="d-block mb-1">Pick Event Date (jQuery UI Datepicker):</label>
+                        <input type="text" id="uiDatepicker" class="form-control" placeholder="Select a date..." readonly aria-label="Event Date Picker">
+                    </div>
+
+                    <div id="uiAccordion">
+                        <h3>1. What is jQuery?</h3>
+                        <div>
+                            <p>A lightweight JavaScript library designed to simplify HTML DOM tree traversal, event handling, and animation.</p>
+                        </div>
+                        <h3>2. What is jQuery UI?</h3>
+                        <div>
+                            <p>A curated set of user interface interactions, effects, widgets, and themes built on top of jQuery.</p>
+                        </div>
+                        <h3>3. When should modern developers use it?</h3>
+                        <div>
+                            <p>Maintaining legacy web projects, WordPress themes, enterprise dashboards, or rapid UI prototypes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================
+             4. AJAX & FETCH API SECTION
+             =================================================================== -->
+        <section class="section" id="ajax-section">
+            <div class="section-header">
+                <span class="sub-tag">Network Communication</span>
+                <h2>AJAX & Fetch API Sandbox</h2>
+                <p>Send asynchronous GET and POST HTTP requests with live JSON payload parsing and error handling.</p>
+            </div>
+
+            <div class="card-panel">
+                <div class="ajax-controls">
+                    <button class="btn btn-primary" id="btnFetchPosts">🚀 Fetch Posts (Fetch API GET)</button>
+                    <button class="btn btn-cyan" id="btnPostData">📝 Submit Post (Fetch API POST)</button>
+                    <button class="btn btn-outline" id="btnJqAjax">⚡ Load via jQuery $.ajax()</button>
+                </div>
+
+                <div class="console-box mt-3" id="ajaxDisplay">
+                    <span class="console-title">// REST API Response Inspector</span>
+                    <pre><code id="ajaxResultText">// Click any action above to dispatch AJAX requests...</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>Web Development Training — <strong>Day 4: JavaScript OOP, jQuery, AJAX & Tic-Tac-Toe</strong></p>
+        </div>
+    </footer>
+
+    <!-- jQuery & jQuery UI Scripts (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <!-- Day 4 Modules & Main Script -->
+    <script src="01-javascript-oop.js"></script>
+    <script src="02-jquery-and-events.js"></script>
+    <script src="03-ajax-examples.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

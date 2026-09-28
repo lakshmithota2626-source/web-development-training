@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: CSS3 Master Cheat Sheet & Interactive Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css-cheatsheet.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="top-header">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="back-link">← Day 2 Home</a>
+            <div class="badge-title">
+                <span class="tag">CSS3 Comprehensive Guide</span>
+                <h1>CSS Master Cheat Sheet</h1>
+            </div>
+            <a href="event-invitation.html" class="next-link">Event Project →</a>
+        </div>
+    </header>
+
+    <main class="container main-content">
+
+        <!-- Table of Quick Links -->
+        <nav class="quick-nav">
+            <span>Jump to:</span>
+            <a href="#selectors">Selectors</a>
+            <a href="#colors-fonts">Colors & Fonts</a>
+            <a href="#typography">Typography & Alignment</a>
+            <a href="#display-boxmodel">Display & Box Model</a>
+            <a href="#flexbox-grid">Flexbox & Grid</a>
+            <a href="#positioning">Positioning</a>
+            <a href="#backgrounds-gradients">Backgrounds & Gradients</a>
+            <a href="#borders-radius">Borders & Radius</a>
+            <a href="#transitions-animations">Transitions & Animations</a>
+        </nav>
+
+        <div class="sections-wrapper">
+
+            <!-- 1. CSS SELECTORS -->
+            <section class="demo-section" id="selectors">
+                <div class="section-title">
+                    <h2>1. CSS Selectors</h2>
+                    <p>Techniques used to target specific HTML elements for styling.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Universal Selector -->
+                    <div class="demo-card">
+                        <h3>Universal Selector (<code>*</code>)</h3>
+                        <p>Matches every single element in the document tree. Often used for CSS resets.</p>
+                        <pre><code>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}</code></pre>
+                        <div class="live-preview selector-preview-all">
+                            <span>Every element inside is targeted</span>
+                        </div>
+                    </div>
+
+                    <!-- Element Selector -->
+                    <div class="demo-card">
+                        <h3>Element Selector (<code>p</code>, <code>h2</code>)</h3>
+                        <p>Targets all HTML elements matching the specific tag name.</p>
+                        <pre><code>p {
+  color: #38bdf8;
+  line-height: 1.5;
+}</code></pre>
+                        <div class="live-preview">
+                            <p class="preview-element">This paragraph is styled by an element selector.</p>
+                        </div>
+                    </div>
+
+                    <!-- ID Selector -->
+                    <div class="demo-card">
+                        <h3>ID Selector (<code>#header</code>)</h3>
+                        <p>Targets a unique element with a specific <code>id</code> attribute (highest specificity).</p>
+                        <pre><code>#uniqueBadge {
+  background: #f43f5e;
+  padding: 6px 12px;
+}</code></pre>
+                        <div class="live-preview">
+                            <span id="uniqueBadge" class="preview-id-target">Unique Element (#uniqueBadge)</span>
+                        </div>
+                    </div>
+
+                    <!-- Class Selector -->
+                    <div class="demo-card">
+                        <h3>Class Selector (<code>.card</code>)</h3>
+                        <p>Targets all elements with the specified class name. Reusable across the page.</p>
+                        <pre><code>.highlight-pill {
+  background: #10b981;
+  color: #fff;
+  border-radius: 20px;
+}</code></pre>
+                        <div class="live-preview">
+                            <span class="highlight-pill">Reusable Class Badge</span>
+                        </div>
+                    </div>
+
+                    <!-- Descendant Selector -->
+                    <div class="demo-card">
+                        <h3>Descendant Selector (<code>.parent .child</code>)</h3>
+                        <p>Matches all elements nested inside a parent element at any depth.</p>
+                        <pre><code>.parent-box .nested-text {
+  color: #fbbf24;
+  font-weight: bold;
+}</code></pre>
+                        <div class="live-preview parent-box">
+                            <div>
+                                <span class="nested-text">Nested descendant styled with amber highlight</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attribute Selector -->
+                    <div class="demo-card">
+                        <h3>Attribute Selector (<code>[type="..."]</code>)</h3>
+                        <p>Targets elements based on the presence or value of an HTML attribute.</p>
+                        <pre><code>input[type="text"][data-status="active"] {
+  border: 2px solid #a855f7;
+}</code></pre>
+                        <div class="live-preview">
+                            <input type="text" data-status="active" value="Targeted via [data-status='active']" readonly class="preview-input" aria-label="Attribute selector demonstration input">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. COLORS & FONTS -->
+            <section class="demo-section" id="colors-fonts">
+                <div class="section-title">
+                    <h2>2. Colors & Fonts</h2>
+                    <p>Color representations and typography declarations.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Colors -->
+                    <div class="demo-card">
+                        <h3>Color Systems</h3>
+                        <p>CSS supports HEX, RGB/RGBA, HSL/HSLA, and Named Colors.</p>
+                        <pre><code>.hex { color: #6366f1; }
+.rgb { color: rgb(236, 72, 153); }
+.rgba { background: rgba(59, 130, 246, 0.2); }
+.hsl { color: hsl(142, 76%, 45%); }</code></pre>
+                        <div class="live-preview color-chips">
+                            <div class="chip chip-hex">#6366f1 (HEX)</div>
+                            <div class="chip chip-rgb">rgb()</div>
+                            <div class="chip chip-rgba">rgba() Translucent</div>
+                            <div class="chip chip-hsl">hsl()</div>
+                        </div>
+                    </div>
+
+                    <!-- Fonts -->
+                    <div class="demo-card">
+                        <h3>Font Family & Weights</h3>
+                        <p>Combining modern Google Fonts with Web-Safe Fallbacks.</p>
+                        <pre><code>.sans { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+.serif { font-family: 'Playfair Display', serif; font-style: italic; }
+.mono { font-family: 'Fira Code', monospace; }</code></pre>
+                        <div class="live-preview font-samples">
+                            <p class="font-sans">Modern Sans-Serif (700 Weight)</p>
+                            <p class="font-serif">Elegant Serif (Italic Serif)</p>
+                            <p class="font-mono">Fira Code (Monospace)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. TYPOGRAPHY & TEXT ALIGNMENT -->
+            <section class="demo-section" id="typography">
+                <div class="section-title">
+                    <h2>3. Typography & Text Alignment</h2>
+                    <p>Styling text sizing, transform, shadow, spacing, and alignment.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Typography Properties -->
+                    <div class="demo-card">
+                        <h3>Typography Properties</h3>
+                        <pre><code>.styled-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.7);
+  text-decoration: underline wavy #38bdf8;
+}</code></pre>
+                        <div class="live-preview">
+                            <p class="preview-typography">Glowing Stylized Typography</p>
+                        </div>
+                    </div>
+
+                    <!-- Text Alignment -->
+                    <div class="demo-card">
+                        <h3>Text Alignment (<code>text-align</code>)</h3>
+                        <pre><code>.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.justify { text-align: justify; }</code></pre>
+                        <div class="live-preview align-demo">
+                            <p class="align-left">← Left Aligned</p>
+                            <p class="align-center">↔ Center Aligned ↔</p>
+                            <p class="align-right">Right Aligned →</p>
+                            <p class="align-justify">Justified text distributes evenly across the entire width of the line to produce straight margins on both sides.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. DISPLAY PROPERTIES & THE BOX MODEL -->
+            <section class="demo-section" id="display-boxmodel">
+                <div class="section-title">
+                    <h2>4. Display Properties & The Box Model</h2>
+                    <p>How elements are rendered in document flow and measured.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Display Properties -->
+                    <div class="demo-card">
+                        <h3>Display Properties</h3>
+                        <pre><code>.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; width: 120px; }
+.none { display: none; }</code></pre>
+                        <div class="live-preview display-demos">
+                            <div class="disp-block">display: block (takes full width)</div>
+                            <span class="disp-inline">display: inline 1</span>
+                            <span class="disp-inline">display: inline 2</span>
+                            <div class="disp-inline-block">inline-block A</div>
+                            <div class="disp-inline-block">inline-block B</div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Box Model Visualization -->
+                    <div class="demo-card">
+                        <h3>The CSS Box Model (<code>box-sizing</code>)</h3>
+                        <p>Margin → Border → Padding → Content</p>
+                        <div class="box-model-visual">
+                            <div class="bm-margin">
+                                <span class="bm-label">MARGIN</span>
+                                <div class="bm-border">
+                                    <span class="bm-label">BORDER</span>
+                                    <div class="bm-padding">
+                                        <span class="bm-label">PADDING</span>
+                                        <div class="bm-content">
+                                            <span class="bm-label">CONTENT (Width × Height)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-tip"><code>box-sizing: border-box</code> includes padding and border in width.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. FLEXBOX & CSS GRID -->
+            <section class="demo-section" id="flexbox-grid">
+                <div class="section-title">
+                    <h2>5. Flexbox & CSS Grid</h2>
+                    <p>The modern layout engines for 1-dimensional and 2-dimensional arrangements.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Flexbox -->
+                    <div class="demo-card">
+                        <h3>CSS Flexbox (1D Layout)</h3>
+                        <pre><code>.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}</code></pre>
+                        <div class="live-preview flex-demo-box">
+                            <div class="flex-item">Item 1</div>
+                            <div class="flex-item">Item 2</div>
+                            <div class="flex-item">Item 3</div>
+                        </div>
+                    </div>
+
+                    <!-- Grid -->
+                    <div class="demo-card">
+                        <h3>CSS Grid (2D Layout)</h3>
+                        <pre><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.span-col { grid-column: span 2; }</code></pre>
+                        <div class="live-preview grid-demo-box">
+                            <div class="grid-item span-2">Span 2 Columns</div>
+                            <div class="grid-item">Cell 2</div>
+                            <div class="grid-item">Cell 3</div>
+                            <div class="grid-item">Cell 4</div>
+                            <div class="grid-item">Cell 5</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. POSITIONING -->
+            <section class="demo-section" id="positioning">
+                <div class="section-title">
+                    <h2>6. CSS Positioning</h2>
+                    <p>Controlling exact layout coordinates: static, relative, absolute, fixed, and sticky.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <div class="demo-card full-span">
+                        <h3>Position Types Overview</h3>
+                        <pre><code>.relative-parent { position: relative; }
+.absolute-child { position: absolute; top: 10px; right: 10px; }
+.sticky-bar { position: sticky; top: 0; }
+.fixed-toast { position: fixed; bottom: 20px; right: 20px; }</code></pre>
+                        <div class="live-preview pos-playground">
+                            <div class="pos-parent">
+                                <span>Relative Parent Container</span>
+                                <div class="pos-absolute">Absolute Child (top: 10px, right: 10px)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. BACKGROUNDS & GRADIENTS -->
+            <section class="demo-section" id="backgrounds-gradients">
+                <div class="section-title">
+                    <h2>7. Background Images & Gradients</h2>
+                    <p>Creating visual depth with patterns, linear, and radial gradients.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Background Images -->
+                    <div class="demo-card">
+                        <h3>Background Image</h3>
+                        <pre><code>.bg-image {
+  background-image: url('data:image/svg+xml,...');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}</code></pre>
+                        <div class="live-preview bg-img-preview">
+                            <span>Image + Overlay Pattern</span>
+                        </div>
+                    </div>
+
+                    <!-- Linear Gradient -->
+                    <div class="demo-card">
+                        <h3>Linear Gradient</h3>
+                        <pre><code>.linear-grad {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+}</code></pre>
+                        <div class="live-preview linear-grad-preview">
+                            <span>135° Tri-Color Linear Gradient</span>
+                        </div>
+                    </div>
+
+                    <!-- Radial Gradient -->
+                    <div class="demo-card">
+                        <h3>Radial Gradient</h3>
+                        <pre><code>.radial-grad {
+  background: radial-gradient(circle at center, #06b6d4 0%, #0f172a 80%);
+}</code></pre>
+                        <div class="live-preview radial-grad-preview">
+                            <span>Circular Radial Gradient</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. BORDERS & BORDER RADIUS -->
+            <section class="demo-section" id="borders-radius">
+                <div class="section-title">
+                    <h2>8. Borders & Border Radius</h2>
+                    <p>Border styling, double/dashed borders, rounded corners, and pill shapes.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Borders -->
+                    <div class="demo-card">
+                        <h3>Border Styles</h3>
+                        <pre><code>.solid { border: 2px solid #6366f1; }
+.dashed { border: 2px dashed #f59e0b; }
+.dotted { border: 3px dotted #10b981; }
+.double { border: 4px double #ec4899; }</code></pre>
+                        <div class="live-preview border-showcase">
+                            <div class="b-box b-solid">Solid</div>
+                            <div class="b-box b-dashed">Dashed</div>
+                            <div class="b-box b-dotted">Dotted</div>
+                            <div class="b-box b-double">Double</div>
+                        </div>
+                    </div>
+
+                    <!-- Border Radius -->
+                    <div class="demo-card">
+                        <h3>Border Radius Variants</h3>
+                        <pre><code>.rounded-sm { border-radius: 6px; }
+.rounded-lg { border-radius: 24px; }
+.pill { border-radius: 9999px; }
+.asymmetric { border-radius: 20px 0 20px 0; }</code></pre>
+                        <div class="live-preview radius-showcase">
+                            <div class="r-box r-sm">6px Radius</div>
+                            <div class="r-box r-lg">24px Radius</div>
+                            <div class="r-box r-pill">Pill Shape</div>
+                            <div class="r-box r-asym">Asymmetric</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. TRANSITIONS & ANIMATIONS -->
+            <section class="demo-section" id="transitions-animations">
+                <div class="section-title">
+                    <h2>9. Transitions & Animations</h2>
+                    <p>Smooth state changes and continuous keyframe sequences.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Transitions -->
+                    <div class="demo-card">
+                        <h3>Transitions (Hover to Test)</h3>
+                        <pre><code>.hover-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.5);
+}</code></pre>
+                        <div class="live-preview">
+                            <div class="interactive-trans-box">Hover Me For Smooth Transition</div>
+                        </div>
+                    </div>
+
+                    <!-- Animations -->
+                    <div class="demo-card">
+                        <h3>@keyframes Animations</h3>
+                        <pre><code>@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+.pulse-element {
+  animation: pulseGlow 2s infinite;
+}</code></pre>
+                        <div class="live-preview anim-showcase">
+                            <div class="anim-box pulse-box">Pulse</div>
+                            <div class="anim-box spin-box">Spin</div>
+                            <div class="anim-box bounce-box">Bounce</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Day 2: CSS3 Master Cheat Sheet & Interactive Visualizer • Web Development Training</p>
+    </footer>
+
+</body>
+</html>

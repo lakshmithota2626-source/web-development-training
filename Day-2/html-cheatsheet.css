@@ -1,0 +1,215 @@
+/* ==========================================================================
+   DAY 2: HTML CHEAT SHEET STYLESHEET
+   ========================================================================== */
+
+:root {
+    --bg-main: #0b0f19;
+    --bg-surface: #121826;
+    --bg-card: #182235;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-highlight: rgba(99, 102, 241, 0.4);
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --primary: #f97316; /* HTML orange brand accent */
+    --primary-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    --secondary: #38bdf8;
+    --code-bg: #080c14;
+
+    --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Header */
+.top-header {
+    background: rgba(18, 24, 38, 0.9);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-link, .next-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+}
+
+.back-link:hover, .next-link:hover {
+    color: #fff;
+    border-color: var(--primary);
+    background: rgba(249, 115, 22, 0.1);
+}
+
+.badge-title {
+    text-align: center;
+}
+
+.tag {
+    background: var(--primary-gradient);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+.badge-title h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Search Bar */
+.search-section {
+    margin: 2.5rem 0 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+#filterInput {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.85rem 1.25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    outline: none;
+    transition: all 0.3s;
+}
+
+#filterInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.25);
+}
+
+/* Cheatsheet Grid */
+.cheatsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.sheet-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.sheet-card:hover {
+    border-color: var(--border-highlight);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.category-icon {
+    font-size: 1.3rem;
+}
+
+.card-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+/* Code Snippet Blocks */
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #e2e8f0;
+}
+
+.card-tip {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+}
+
+.card-tip code {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    color: var(--secondary);
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+    .cheatsheet-grid {
+        grid-template-columns: 1fr;
+    }
+    .nav-wrapper {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Modern JavaScript Practice & Interactive Lab</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="badge">Day 03</span>
+                <span>Web Dev Training</span>
+            </div>
+            <div class="header-tag">Core JavaScript, Arrays, Functions & DOM</div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="main-title">JavaScript Fundamentals & DOM Lab</h1>
+            <p class="subtitle">
+                Interactive playground covering 26 essential JavaScript topics: Arrays & Methods, Function Declarations, Arrow Functions, Higher-Order Functions, DOM Selection, Element Lifecycle, and Event Listeners.
+            </p>
+        </section>
+
+        <!-- TOPIC SECTION 1: ARRAYS & METHODS -->
+        <section class="lab-section" id="arrays-section">
+            <div class="section-title">
+                <div class="section-tag">Part 1 (Topics 1 - 13)</div>
+                <h2>Arrays, Traversal & Mutation Methods</h2>
+                <p>Interactive array stack & queue visualizer demonstrating array lifecycle in real-time.</p>
+            </div>
+
+            <div class="lab-card">
+                <!-- Visual Array Display -->
+                <div class="array-visualizer">
+                    <span class="vis-label">Live Array Representation:</span>
+                    <div class="array-chips-lane" id="arrayDisplay">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Array Action Controls -->
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label>Stack Operations (End)</label>
+                        <div class="btn-cluster">
+                            <button class="btn btn-sm btn-primary" id="btnPush">push("New")</button>
+                            <button class="btn btn-sm btn-danger" id="btnPop">pop()</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Queue Operations (Start)</label>
+                        <div class="btn-cluster">
+                            <button class="btn btn-sm btn-cyan" id="btnUnshift">unshift("First")</button>
+                            <button class="btn btn-sm btn-amber" id="btnShift">shift()</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Transformation & Traversal</label>
+                        <div class="btn-cluster">
+                            <button class="btn btn-sm btn-purple" id="btnMap">map(Uppercase)</button>
+                            <button class="btn btn-sm btn-green" id="btnFilter">filter(Length > 5)</button>
+                            <button class="btn btn-sm btn-outline" id="btnResetArray">Reset Array</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Console Output for Arrays -->
+                <div class="console-box" id="arrayConsole">
+                    <span class="console-title">// Output Console (Array Operations)</span>
+                    <pre><code id="arrayLogText">// Click any action above to run methods...</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOPIC SECTION 2: FUNCTIONS & CALLBACKS -->
+        <section class="lab-section" id="functions-section">
+            <div class="section-title">
+                <div class="section-tag">Part 2 (Topics 14 - 18)</div>
+                <h2>Functions, Arrow Functions & Higher-Order Functions</h2>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Function Tester 1: Calculator HOF -->
+                <div class="lab-card">
+                    <h3>18. Higher-Order Function Tester</h3>
+                    <p>Select a mathematical operator function to pass as a callback into our higher-order calculation engine:</p>
+                    
+                    <div class="calc-inputs">
+                        <input type="number" id="numA" value="12" class="num-input" aria-label="First number operand">
+                        <select id="operationSelect" class="op-select" aria-label="Select arithmetic operation">
+                            <option value="add">Add Function (a + b)</option>
+                            <option value="multiply">Multiply (a * b) [Arrow]</option>
+                            <option value="power">Power (a ^ b) [Anonymous]</option>
+                        </select>
+                        <input type="number" id="numB" value="4" class="num-input" aria-label="Second number operand">
+                    </div>
+
+                    <button class="btn btn-primary btn-full" id="btnExecCalc">Execute Higher-Order Calculation</button>
+                    <div class="result-pill" id="calcResult">Result: Ready</div>
+                </div>
+
+                <!-- Function Concepts Summary -->
+                <div class="lab-card">
+                    <h3>Function Syntax Comparison</h3>
+                    <ul class="syntax-list">
+                        <li>
+                            <strong>Normal Function:</strong> <code>function add(a, b) { return a + b; }</code>
+                        </li>
+                        <li>
+                            <strong>Anonymous:</strong> <code>const add = function(a, b) { return a + b; };</code>
+                        </li>
+                        <li>
+                            <strong>Arrow (ES6):</strong> <code>const add = (a, b) => a + b;</code>
+                        </li>
+                        <li>
+                            <strong>Callback:</strong> A function passed into another function as an argument.
+                        </li>
+                        <li>
+                            <strong>Higher-Order:</strong> A function that takes or returns functions.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOPIC SECTION 3: DOM MANIPULATION & EVENTS -->
+        <section class="lab-section" id="dom-section">
+            <div class="section-title">
+                <div class="section-tag">Part 3 (Topics 19 - 26)</div>
+                <h2>DOM Selection, Element Lifecycle & Event Handling</h2>
+            </div>
+
+            <div class="lab-card" id="demoSandbox">
+                <div class="sandbox-header">
+                    <h3>Interactive DOM Sandbox</h3>
+                    <p>Demonstrates <code>document.createElement</code>, <code>appendChild</code>, <code>remove</code>, <code>replaceWith</code>, <code>element.style</code>, and <code>addEventListener</code>.</p>
+                </div>
+
+                <div class="dom-toolbar">
+                    <input type="text" id="cardInputText" placeholder="Enter custom card text..." class="dom-input" aria-label="Custom card text input">
+                    <button class="btn btn-primary" id="btnAddCard">➕ Create & Prepend Element</button>
+                    <button class="btn btn-purple" id="btnStyleAll">🎨 Toggle JavaScript Dynamic Styles</button>
+                </div>
+
+                <!-- Dynamic Container -->
+                <div class="card-sandbox-lane" id="cardContainer">
+                    <div class="dynamic-card initial-card" id="sampleCard">
+                        <h4>Initial DOM Element</h4>
+                        <p>This element was rendered in initial HTML. Click replace to swap it via JavaScript.</p>
+                        <div class="card-btn-row">
+                            <button class="btn btn-sm btn-outline" onclick="replaceSample()">🔄 Replace Element</button>
+                            <button class="btn btn-sm btn-danger" onclick="this.closest('.dynamic-card').remove()">✕ Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>Web Development Training — <strong>Day 3: JavaScript Master Suite & Interactive Lab</strong></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Scripts -->
+    <script src="01-arrays-and-methods.js"></script>
+    <script src="02-functions-and-callbacks.js"></script>
+    <script src="03-dom-and-events.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
