@@ -95,6 +95,6 @@ react-project-2/
 - Add unit selection and a more detailed expiry notification view.
 - Add automated component and interaction tests.
 
-## Project 1 Progress Context
+## Related Project
 
-The existing repository documents a React To-Do capstone in the Day 7 learning material, but it does not contain a separate Day 11 Project 1 implementation. The Day 12 LinkedIn draft refers to the documented To-Do learning goals and does not claim that a separate Project 1 has been completed.
+React Project 1, [Focus Board](../../Day-11/react-project-1/README.md), is a task manager for study, work, and personal tasks. Pantry Ledger is Project 2 and focuses instead on pantry stock, categories, and expiry dates.

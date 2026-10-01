@@ -1,9 +1,9 @@
 # Day 12 LinkedIn Post: React Project 1 Progress
 
-Day 12 of my Web Development Training is a chance to keep building on my React learning.
+Day 12 of my Web Development Training builds on the React work I started with Project 1: Focus Board, a task manager for study, work, and personal goals.
 
-I’m working through the To-Do app capstone introduced in my earlier React lessons. Its planned features—adding tasks, changing their status, removing them, and filtering the list—are giving me a practical way to study components, state, forms, events, and list rendering.
+While building it, I practised breaking an interface into components, passing data and callbacks with props, and using state to add, complete, filter, and remove tasks. The task form, progress summary, and saved browser state helped me connect those React ideas to a practical interface.
 
-My focus is understanding how a React interface responds to state changes, one feature at a time. Still learning, testing, and improving as I go.
+I’m continuing to learn by building one feature at a time and checking how each interaction changes the UI.
 
 #React #JavaScript #WebDevelopment #FrontendDevelopment #LearningInPublic
