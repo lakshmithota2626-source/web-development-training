@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly Java guide covering syntax, variables, types, operators, control flow, arrays, methods, and object-oriented programming.">
+  <meta name="theme-color" content="#f1f4f1">
+  <title>Java Foundations | Day 10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Web Development Training home"><span class="brand-mark" aria-hidden="true">J</span><span>Web Development Training</span></a>
+      <span class="day-label">Day 10 / Java foundations</span>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="hero" id="top">
+      <div>
+        <p class="eyebrow">Start with the building blocks</p>
+        <h1>Java, one clear step at a time.</h1>
+        <p class="hero-copy">Learn how a Java program is shaped, how it works with data, and how classes model objects. Each example is included in a complete source file you can compile and run.</p>
+      </div>
+      <aside class="hero-note"><strong>Compile, then run</strong>Java source code is compiled into bytecode. The Java Virtual Machine (JVM) runs that bytecode on a supported platform.</aside>
+    </section>
+
+    <nav class="anchor-nav" aria-label="Lesson sections">
+      <a href="#foundations">Foundations</a><a href="#control-flow">Control flow</a><a href="#arrays-methods">Arrays and methods</a><a href="#oop">Classes and OOP</a><a href="#run-examples">Run the examples</a>
+    </nav>
+
+    <section class="section" id="foundations" aria-labelledby="foundations-title">
+      <div class="section-heading"><div><p class="section-kicker">01 / Foundations</p><h2 id="foundations-title">Java and its building blocks</h2></div><p>Java is a general-purpose, class-based language. The basics are statements, values, and types.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card"><span class="topic-index">01</span><h3>Introduction to Java</h3><p class="explanation">Java is a general-purpose, class-based language. A compiler turns source code into bytecode that the JVM can run.</p><div class="example-grid"><div><h4>Program shape</h4><pre><code>public class HelloJava {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}</code></pre></div><div><h4>Expected output</h4><pre class="output"><code>Hello, Java!</code></pre><p class="code-note">The JVM starts at <code>main</code> and prints one line.</p></div></div><p class="use-line"><strong>Use:</strong> command-line tools, desktop and server applications, Android development, and more.</p></article>
+
+        <article class="topic-card"><span class="topic-index">02</span><h3>Java syntax</h3><p class="explanation">Java uses classes and methods. Statements usually end with a semicolon, and braces mark code blocks.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>class Example {
+    public static void main(String[] args) {
+        // statements go here
+    }
+}</code></pre></div><div><h4>Runnable example</h4><pre><code>System.out.println("Ready");</code></pre><p class="expected"><strong>Output:</strong> Ready</p><p class="code-note">The print statement runs inside the <code>main</code> method.</p></div></div><p class="use-line"><strong>Use:</strong> follow the structure so the compiler can check and run your program.</p></article>
+
+        <article class="topic-card"><span class="topic-index">03</span><h3>Variables</h3><p class="explanation">A variable is a named place to keep a value. Its type is declared before its name.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>type variableName = value;</code></pre></div><div><h4>Java example</h4><pre><code>int score = 92;
+score = 96;
+System.out.println(score);</code></pre><p class="expected"><strong>Output:</strong> 96</p><p class="code-note">The variable is reassigned before it is printed.</p></div></div><p class="use-line"><strong>Use:</strong> keep track of values such as a score, quantity, or user name.</p></article>
+
+        <article class="topic-card"><span class="topic-index">04</span><h3>Data types</h3><p class="explanation">Types determine what a value represents and which operations are valid. Java has primitive types and reference types such as <code>String</code>.</p><div class="example-grid"><div><h4>Common types</h4><pre><code>int count = 4;
+double price = 2.5;
+char grade = 'A';
+boolean ready = true;
+String language = "Java";</code></pre></div><div><h4>Expected output</h4><pre class="output"><code>4 2.5 A true Java</code></pre><p class="code-note">Each variable stores a value suited to its declared type.</p></div></div><p class="use-line"><strong>Use:</strong> choose types that describe the data your program needs.</p></article>
+
+        <article class="topic-card"><span class="topic-index">05</span><h3>Operators</h3><p class="explanation">Operators calculate values, compare values, and combine boolean conditions.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>+  -  *  /  %
+==  !=  &gt;  &lt;  &gt;=  &lt;=
+&amp;&amp;  ||  !</code></pre></div><div><h4>Java example</h4><pre><code>int total = 12 + 5;
+int remainder = total % 4;
+boolean enough = total &gt;= 15;
+System.out.println(total + " " + remainder + " " + enough);</code></pre><p class="expected"><strong>Output:</strong> 17 1 true</p><p class="code-note">Arithmetic calculates numbers; comparison returns a boolean.</p></div></div><p class="use-line"><strong>Use:</strong> compute totals and make decisions from values.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="control-flow" aria-labelledby="control-title">
+      <div class="section-heading"><div><p class="section-kicker">02 / Control flow</p><h2 id="control-title">Choose a path or repeat work</h2></div><p>Conditions choose which statements run; loops repeat statements while their rules allow it.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card"><span class="topic-index">06</span><h3>if / else</h3><p class="explanation">An <code>if</code> statement runs a block when its boolean condition is true. <code>else</code> handles the other path.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>if (condition) {
+    // true path
+} else {
+    // other path
+}</code></pre></div><div><h4>Java example</h4><pre><code>int score = 74;
+if (score &gt;= 60) {
+    System.out.println("Pass");
+} else {
+    System.out.println("Try again");
+}</code></pre><p class="expected"><strong>Output:</strong> Pass</p><p class="code-note">Because 74 is at least 60, the first branch runs.</p></div></div><p class="use-line"><strong>Use:</strong> validate input or choose a message based on a value.</p></article>
+
+        <article class="topic-card"><span class="topic-index">07</span><h3>switch</h3><p class="explanation">A <code>switch</code> selects one branch from a set of matching cases. Use <code>break</code> to leave a case.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>switch (value) {
+    case option:
+        // work
+        break;
+    default:
+        // fallback
+}</code></pre></div><div><h4>Java example</h4><pre><code>String day = "MON";
+switch (day) {
+    case "MON":
+        System.out.println("Start");
+        break;
+    default:
+        System.out.println("Other day");
+}</code></pre><p class="expected"><strong>Output:</strong> Start</p><p class="code-note">The matching case runs, then <code>break</code> exits the switch.</p></div></div><p class="use-line"><strong>Use:</strong> handle menu choices or a known set of categories.</p></article>
+
+        <article class="topic-card"><span class="topic-index">08</span><h3>for loop</h3><p class="explanation">A <code>for</code> loop is useful when you know the starting value and the stopping condition.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>for (start; condition; update) {
+    // repeated work
+}</code></pre></div><div><h4>Java example</h4><pre><code>for (int number = 1; number &lt;= 3; number++) {
+    System.out.println(number);
+}</code></pre><p class="expected"><strong>Output:</strong> 1, then 2, then 3</p><p class="code-note">The loop increments <code>number</code> after each pass.</p></div></div><p class="use-line"><strong>Use:</strong> repeat a task a set number of times.</p></article>
+
+        <article class="topic-card"><span class="topic-index">09</span><h3>while loop</h3><p class="explanation">A <code>while</code> loop checks its condition before each pass. It may run zero times if the condition starts false.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>while (condition) {
+    // update toward stopping
+}</code></pre></div><div><h4>Java example</h4><pre><code>int count = 2;
+while (count &gt; 0) {
+    System.out.println(count);
+    count--;
+}</code></pre><p class="expected"><strong>Output:</strong> 2, then 1</p><p class="code-note">The counter decreases so the condition eventually becomes false.</p></div></div><p class="use-line"><strong>Use:</strong> repeat while a condition remains true.</p></article>
+
+        <article class="topic-card"><span class="topic-index">10</span><h3>do-while loop</h3><p class="explanation">A <code>do-while</code> loop checks its condition after the body, so it always runs at least once.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>do {
+    // repeated work
+} while (condition);</code></pre></div><div><h4>Java example</h4><pre><code>int attempts = 0;
+do {
+    attempts++;
+    System.out.println(attempts);
+} while (attempts &lt; 1);</code></pre><p class="expected"><strong>Output:</strong> 1</p><p class="code-note">The body runs once, then the false condition stops the loop.</p></div></div><p class="use-line"><strong>Use:</strong> show a menu at least once before checking whether to repeat.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="arrays-methods" aria-labelledby="arrays-title">
+      <div class="section-heading"><div><p class="section-kicker">03 / Reusable data and behavior</p><h2 id="arrays-title">Arrays and methods</h2></div><p>Arrays group values of the same type. Methods give a name to reusable behavior.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card"><span class="topic-index">11</span><h3>Arrays</h3><p class="explanation">An array stores a fixed number of values of one declared type. Its first index is 0 and its length is available through <code>length</code>.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>int[] values = {value1, value2};
+values[0];
+values.length;</code></pre></div><div><h4>Java example</h4><pre><code>int[] scores = {80, 95, 70};
+int total = 0;
+for (int score : scores) {
+    total += score;
+}
+System.out.println(total);</code></pre><p class="expected"><strong>Output:</strong> 245</p><p class="code-note">The enhanced for loop adds every score to <code>total</code>.</p></div></div><p class="use-line"><strong>Use:</strong> store and process a group of scores, prices, or other same-type values.</p><a class="source-link" href="java/arrays/ArrayDemo.java">Complete runnable program: ArrayDemo.java</a></article>
+
+        <article class="topic-card"><span class="topic-index">12</span><h3>Methods</h3><p class="explanation">A method is a named block of code. Parameters receive inputs, and a return type describes its result.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>static returnType methodName(parameters) {
+    return result;
+}</code></pre></div><div><h4>Java example</h4><pre><code>static int add(int left, int right) {
+    return left + right;
+}
+
+System.out.println(add(4, 5));</code></pre><p class="expected"><strong>Output:</strong> 9</p><p class="code-note">Calling <code>add</code> passes two numbers and prints the returned sum.</p></div></div><p class="use-line"><strong>Use:</strong> avoid repeating calculations and give an operation a clear name.</p><a class="source-link" href="java/basics/BasicsDemo.java">Complete runnable program: BasicsDemo.java</a></article>
+      </div>
+    </section>
+
+    <section class="section" id="oop" aria-labelledby="oop-title">
+      <div class="section-heading"><div><p class="section-kicker">04 / Object-oriented programming</p><h2 id="oop-title">Classes, objects, and OOP</h2></div><p>Classes describe a type of object. Constructors create initialized objects; OOP organizes data and behavior together.</p></div>
+      <div class="topic-grid">
+        <article class="topic-card"><span class="topic-index">13</span><h3>Classes</h3><p class="explanation">A class is a blueprint that declares the data and behavior its objects can have.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>class Person {
+    private String name;
+    String getName() { return name; }
+}</code></pre></div><div><h4>Java example</h4><pre><code>class Person {
+    private final String name;
+    Person(String name) { this.name = name; }
+    String getName() { return name; }
+}</code></pre><p class="expected"><strong>Result:</strong> defines a type with a private field and a method.</p><p class="code-note">The class groups a person's data with behavior for reading it.</p></div></div><p class="use-line"><strong>Use:</strong> model concepts such as a person, product, or bank account.</p><a class="source-link" href="java/oop/OopDemo.java">Complete runnable program: OopDemo.java</a></article>
+
+        <article class="topic-card"><span class="topic-index">14</span><h3>Objects</h3><p class="explanation">An object is an instance of a class. Each object has its own field values.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>ClassName variable = new ClassName(arguments);</code></pre></div><div><h4>Java example</h4><pre><code>Person learner = new Person("Sam");
+System.out.println(learner.getName());</code></pre><p class="expected"><strong>Output:</strong> Sam</p><p class="code-note">The variable refers to one <code>Person</code> object.</p></div></div><p class="use-line"><strong>Use:</strong> represent individual records with their own values.</p><a class="source-link" href="java/oop/OopDemo.java">Complete runnable program: OopDemo.java</a></article>
+
+        <article class="topic-card"><span class="topic-index">15</span><h3>Constructors</h3><p class="explanation">A constructor runs when an object is created. It has the class name and no return type.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>ClassName(parameters) {
+    // initialize fields
+}</code></pre></div><div><h4>Java example</h4><pre><code>Person(String name) {
+    this.name = name;
+}
+
+Person learner = new Person("Sam");</code></pre><p class="expected"><strong>Result:</strong> the new person's name is initialized to Sam.</p><p class="code-note"><code>this.name</code> refers to the object's field.</p></div></div><p class="use-line"><strong>Use:</strong> ensure a new object starts with required values.</p><a class="source-link" href="java/oop/OopDemo.java">Complete runnable program: OopDemo.java</a></article>
+
+        <article class="topic-card"><span class="topic-index">16</span><h3>Basic OOP concepts</h3><p class="explanation">Encapsulation protects fields, abstraction exposes a simple contract, inheritance reuses a parent type, and polymorphism allows an override to vary behavior.</p><div class="example-grid"><div><h4>Syntax</h4><pre><code>class Student extends Person {
+    @Override
+    String introduce() { ... }
+}</code></pre></div><div><h4>Java example</h4><pre><code>Member learner = new Student("Leo", "Java");
+System.out.println(learner.introduce());</code></pre><p class="expected"><strong>Output:</strong> I'm Leo, a Java student.</p><p class="code-note">The parent reference calls the student's overridden method.</p></div></div><p class="use-line"><strong>Use:</strong> organize related types while keeping each type's behavior clear.</p><a class="source-link" href="java/oop/OopDemo.java">Complete runnable program: OopDemo.java</a></article>
+      </div>
+    </section>
+
+    <section class="section run-section" id="run-examples" aria-labelledby="run-title">
+      <div class="section-heading"><div><p class="section-kicker">Try it locally</p><h2 id="run-title">Compile and run the examples</h2></div><p>Install a JDK to get both the Java compiler (<code>javac</code>) and runtime (<code>java</code>).</p></div>
+      <div class="run-grid">
+        <article><h3>Basics</h3><pre><code>javac -d out java/basics/BasicsDemo.java
+java -cp out BasicsDemo</code></pre><p>Shows variables, types, operators, decisions, loops, and a method.</p></article>
+        <article><h3>Arrays</h3><pre><code>javac -d out java/arrays/ArrayDemo.java
+java -cp out ArrayDemo</code></pre><p>Prints the scores and their average.</p></article>
+        <article><h3>OOP</h3><pre><code>javac -d out java/oop/OopDemo.java
+java -cp out OopDemo</code></pre><p>Creates objects and demonstrates inheritance and polymorphism.</p></article>
+      </div>
+      <p class="note">Run these commands from the <code>Day-10</code> folder. The examples use standard Java syntax and need no external libraries.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>Day 10 / Java foundations</span><a href="../index.html">Back to Web Development Training</a></footer>
+</body>
+</html>
