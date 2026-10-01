@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Redux & Client–Server Communication - an interactive learning dashboard for Redux concepts and client-server communication."
+    />
+    <title>Redux & Client–Server Communication</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-theme="light">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">R</div>
+          <div>
+            <p class="eyebrow">Frontend Learning Lab</p>
+            <h1>Redux &amp; Client–Server Communication</h1>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <label class="theme-toggle" aria-label="Toggle dark mode">
+            <input type="checkbox" id="themeToggle" />
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          </label>
+        </div>
+      </header>
+
+      <nav class="section-nav" id="sectionNav" aria-label="Slide navigation"></nav>
+
+      <main class="slides-wrapper">
+        <section class="slide active" data-title="Overview">
+          <div class="slide-header">
+            <span class="slide-tag">01</span>
+            <h2>What Redux is</h2>
+          </div>
+
+          <div class="hero-grid">
+            <article class="card">
+              <h3>Redux in one sentence</h3>
+              <p>
+                Redux is a predictable state container for JavaScript applications. It helps us keep data in one place and makes updates easier to track, debug, and test.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Core idea</h3>
+              <p>
+                Instead of storing state in many different components, the app keeps state in one central store and updates it through clear rules.
+              </p>
+            </article>
+          </div>
+
+          <div class="diagram-box">
+            <div class="diagram-flow">
+              <div class="flow-step">Component</div>
+              <div class="arrow">→</div>
+              <div class="flow-step muted">Dispatch</div>
+              <div class="arrow">→</div>
+              <div class="flow-step">Reducer</div>
+              <div class="arrow">→</div>
+              <div class="flow-step muted">Store</div>
+              <div class="arrow">→</div>
+              <div class="flow-step">UI updates</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="State management">
+          <div class="slide-header">
+            <span class="slide-tag">02</span>
+            <h2>Why state management is needed</h2>
+          </div>
+
+          <div class="grid-two">
+            <article class="card">
+              <h3>Without a central store</h3>
+              <ul class="bullet-list">
+                <li>State is duplicated across many components.</li>
+                <li>Updates become hard to predict.</li>
+                <li>Debugging gets messy.</li>
+                <li>Different parts of the app can get out of sync.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>With Redux</h3>
+              <ul class="bullet-list">
+                <li>One source of truth for app data.</li>
+                <li>Clear rules for updating state.</li>
+                <li>More predictable behavior.</li>
+                <li>Easier debugging and testing.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="callout insight">
+            <strong>Think of it like this:</strong> Without a shared state system, your app can feel like several people editing the same document at the same time.
+          </div>
+        </section>
+
+        <section class="slide" data-title="Store">
+          <div class="slide-header">
+            <span class="slide-tag">03</span>
+            <h2>Redux Store</h2>
+          </div>
+
+          <div class="store-visual">
+            <div class="store-box">
+              <span class="mini-label">Redux Store</span>
+              <pre>{
+  "count": 0,
+  "user": "Samantha",
+  "theme": "light"
+}</pre>
+            </div>
+
+            <article class="card">
+              <h3>Responsibilities</h3>
+              <ul class="bullet-list">
+                <li>Holds the application state.</li>
+                <li>Lets us read state with selectors.</li>
+                <li>Updates only through actions and reducers.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Actions">
+          <div class="slide-header">
+            <span class="slide-tag">04</span>
+            <h2>Actions</h2>
+          </div>
+
+          <div class="card code-card">
+            <pre>const increment = {
+  type: 'COUNTER_INCREMENT',
+  payload: 1
+};</pre>
+          </div>
+
+          <div class="grid-three">
+            <article class="mini-card">
+              <h4>Purpose</h4>
+              <p>Describe an event or change.</p>
+            </article>
+            <article class="mini-card">
+              <h4>Shape</h4>
+              <p>Usually include a type and optional payload.</p>
+            </article>
+            <article class="mini-card">
+              <h4>Example</h4>
+              <p>ADD_ITEM, LOGIN_SUCCESS, FETCH_USERS</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Reducers">
+          <div class="slide-header">
+            <span class="slide-tag">05</span>
+            <h2>Reducers</h2>
+          </div>
+
+          <div class="card code-card">
+            <pre>function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case 'COUNTER_INCREMENT':
+      return { ...state, count: state.count + 1 };
+    default:
+      return state;
+  }
+}</pre>
+          </div>
+
+          <div class="callout info">
+            Reducers are pure functions: same input, same output. They do not randomly change things or trigger network calls.
+          </div>
+        </section>
+
+        <section class="slide" data-title="Dispatch">
+          <div class="slide-header">
+            <span class="slide-tag">06</span>
+            <h2>Dispatch</h2>
+          </div>
+
+          <div class="card interactive-panel">
+            <div class="redux-counter-header">
+              <h3>Redux-inspired counter</h3>
+              <span id="counterStateBadge" class="badge">State: ready</span>
+            </div>
+
+            <div class="counter-box">
+              <button class="action-btn danger" data-action="decrement" aria-label="Decrease count">−</button>
+              <div id="counterValue" class="counter-value">0</div>
+              <button class="action-btn success" data-action="increment" aria-label="Increase count">+</button>
+            </div>
+
+            <div class="counter-actions">
+              <button class="secondary-btn" data-action="reset">Reset</button>
+            </div>
+
+            <pre id="counterOutput" class="counter-output">{ "count": 0 }</pre>
+          </div>
+        </section>
+
+        <section class="slide" data-title="useSelector">
+          <div class="slide-header">
+            <span class="slide-tag">07</span>
+            <h2>useSelector</h2>
+          </div>
+
+          <div class="card code-card">
+            <pre>const count = useSelector((state) => state.counter.count);
+const user = useSelector((state) => state.user.name);</pre>
+          </div>
+
+          <div class="grid-two">
+            <article class="mini-card">
+              <h4>Purpose</h4>
+              <p>Select a specific piece of data from the store for a component.</p>
+            </article>
+            <article class="mini-card">
+              <h4>Benefit</h4>
+              <p>Components can react to the data they actually need, without holding unrelated state.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Data Flow">
+          <div class="slide-header">
+            <span class="slide-tag">08</span>
+            <h2>Redux data flow</h2>
+          </div>
+
+          <div class="data-flow-steps">
+            <article class="flow-card">
+              <span>1</span>
+              <h4>View triggers action</h4>
+            </article>
+            <article class="flow-card">
+              <span>2</span>
+              <h4>Dispatch sends action</h4>
+            </article>
+            <article class="flow-card">
+              <span>3</span>
+              <h4>Reducer updates state</h4>
+            </article>
+            <article class="flow-card">
+              <span>4</span>
+              <h4>UI re-renders</h4>
+            </article>
+          </div>
+
+          <div class="callout insight">
+            This cycle keeps updates understandable, traceable, and easier to maintain.
+          </div>
+        </section>
+
+        <section class="slide" data-title="Client vs Server">
+          <div class="slide-header">
+            <span class="slide-tag">09</span>
+            <h2>Client vs Server</h2>
+          </div>
+
+          <div class="grid-two">
+            <article class="card">
+              <h3>Client</h3>
+              <ul class="bullet-list">
+                <li>Runs in the browser.</li>
+                <li>Handles UI and interaction logic.</li>
+                <li>Requests data from a server.</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Server</h3>
+              <ul class="bullet-list">
+                <li>Runs on a backend system.</li>
+                <li>Stores data and processes requests.</li>
+                <li>Sends a response back to the client.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="diagram-box">
+            <div class="diagram-flow">
+              <div class="flow-step">Browser</div>
+              <div class="arrow">→</div>
+              <div class="flow-step muted">HTTP Request</div>
+              <div class="arrow">→</div>
+              <div class="flow-step">Server</div>
+              <div class="arrow">→</div>
+              <div class="flow-step muted">HTTP Response</div>
+              <div class="arrow">→</div>
+              <div class="flow-step">UI updates</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Request and Response">
+          <div class="slide-header">
+            <span class="slide-tag">10</span>
+            <h2>Request and Response</h2>
+          </div>
+
+          <div class="request-demo card">
+            <div class="request-controls">
+              <label>
+                Method
+                <select id="requestMethod">
+                  <option value="GET">GET</option>
+                  <option value="POST">POST</option>
+                  <option value="PUT">PUT</option>
+                  <option value="DELETE">DELETE</option>
+                </select>
+              </label>
+
+              <label>
+                Endpoint
+                <select id="requestEndpoint">
+                  <option value="/api/users">/api/users</option>
+                  <option value="/api/users/42">/api/users/42</option>
+                  <option value="/api/products">/api/products</option>
+                </select>
+              </label>
+
+              <button id="sendRequestBtn" class="primary-btn">Send Request</button>
+            </div>
+
+            <div class="request-pane-grid">
+              <div class="request-pane">
+                <h4>Request</h4>
+                <pre id="requestPreview">GET /api/users</pre>
+              </div>
+              <div class="request-pane">
+                <h4>Response</h4>
+                <pre id="responsePreview">{
+  "status": 200,
+  "message": "OK",
+  "data": [
+    { "id": 1, "name": "Ava" }
+  ]
+}</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-title="HTTP methods">
+          <div class="slide-header">
+            <span class="slide-tag">11</span>
+            <h2>HTTP methods</h2>
+          </div>
+
+          <div class="http-grid">
+            <article class="http-card get">
+              <span>GET</span>
+              <p>Read or fetch data.</p>
+              <code>GET /api/users</code>
+            </article>
+
+            <article class="http-card post">
+              <span>POST</span>
+              <p>Create a new resource.</p>
+              <code>POST /api/users</code>
+            </article>
+
+            <article class="http-card put">
+              <span>PUT</span>
+              <p>Replace or update an existing resource.</p>
+              <code>PUT /api/users/42</code>
+            </article>
+
+            <article class="http-card delete">
+              <span>DELETE</span>
+              <p>Remove a resource.</p>
+              <code>DELETE /api/users/42</code>
+            </article>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Async API flow">
+          <div class="slide-header">
+            <span class="slide-tag">12</span>
+            <h2>Async API flow</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-step">
+              <span class="timeline-number">1</span>
+              <div>
+                <h4>Trigger the request</h4>
+                <p>A component dispatches an async action.</p>
+              </div>
+            </article>
+
+            <article class="timeline-step">
+              <span class="timeline-number">2</span>
+              <div>
+                <h4>Loading state</h4>
+                <p>UI shows a spinner, skeleton, or text while waiting.</p>
+              </div>
+            </article>
+
+            <article class="timeline-step">
+              <span class="timeline-number">3</span>
+              <div>
+                <h4>Success or error</h4>
+                <p>Data arrives successfully or an error is handled cleanly.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="card async-demo">
+            <h3>Async state simulation</h3>
+            <div class="demo-actions">
+              <button class="primary-btn" data-async="load">Load users</button>
+              <button class="secondary-btn" data-async="error">Simulate error</button>
+            </div>
+            <div id="asyncStatus" class="async-status">Idle</div>
+            <pre id="asyncPayload">No request yet.</pre>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Loading success error">
+          <div class="slide-header">
+            <span class="slide-tag">13</span>
+            <h2>Loading, Success and Error states</h2>
+          </div>
+
+          <div class="status-grid">
+            <article class="status-box loading">
+              <strong>Loading</strong>
+              <p>Show a spinner or placeholder while waiting for the server response.</p>
+            </article>
+            <article class="status-box success">
+              <strong>Success</strong>
+              <p>Render the fetched data and show the result clearly.</p>
+            </article>
+            <article class="status-box error">
+              <strong>Error</strong>
+              <p>Show the message and provide a retry option when something fails.</p>
+            </article>
+          </div>
+
+          <div class="callout info">
+            A strong app responds clearly to all three states so users always know what is happening.
+          </div>
+        </section>
+
+        <section class="slide" data-title="createAsyncThunk">
+          <div class="slide-header">
+            <span class="slide-tag">14</span>
+            <h2>createAsyncThunk concept</h2>
+          </div>
+
+          <div class="card code-card">
+            <pre>export const fetchUsers = createAsyncThunk(
+  'users/fetchUsers',
+  async () => {
+    const response = await fetch('/api/users');
+    return response.json();
+  }
+);</pre>
+          </div>
+
+          <div class="mini-sequence">
+            <span>pending</span>
+            <span class="arrow-small">→</span>
+            <span>fulfilled</span>
+            <span class="arrow-small">→</span>
+            <span>rejected</span>
+          </div>
+
+          <div class="callout insight">
+            Redux Toolkit gives us a clean way to manage async tasks with lifecycle states like pending, fulfilled, and rejected.
+          </div>
+        </section>
+
+        <section class="slide" data-title="Examples">
+          <div class="slide-header">
+            <span class="slide-tag">15</span>
+            <h2>Real-world examples</h2>
+          </div>
+
+          <div class="examples-grid">
+            <article class="example-card">
+              <h4>E-commerce</h4>
+              <p>Shopping cart, product listings, pricing, and order totals.</p>
+            </article>
+            <article class="example-card">
+              <h4>Social app</h4>
+              <p>Posts, likes, comments, notifications, and profiles.</p>
+            </article>
+            <article class="example-card">
+              <h4>Dashboard</h4>
+              <p>Analytics, charts, filters, and user settings.</p>
+            </article>
+            <article class="example-card">
+              <h4>Authentication</h4>
+              <p>Login state, tokens, permissions, routes, and user info.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="slide" data-title="Quiz">
+          <div class="slide-header">
+            <span class="slide-tag">16</span>
+            <h2>Interactive quiz</h2>
+          </div>
+
+          <div class="quiz-card card">
+            <div class="quiz-header">
+              <p class="quiz-label">Question <span id="quizNumber">1</span> / <span id="quizTotal">5</span></p>
+              <div class="score-pill"><span id="quizScore">0</span> correct</div>
+            </div>
+
+            <h3 id="quizQuestion">Question text</h3>
+            <div id="quizOptions" class="quiz-options"></div>
+            <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+            <button id="nextQuizBtn" class="primary-btn hidden">Next question</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bottom-bar">
+        <div class="progress-panel">
+          <span id="progressLabel">1 / 16</span>
+          <div class="progress-track" aria-label="progress">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button id="prevBtn" class="secondary-btn">Previous</button>
+          <button id="nextBtn" class="primary-btn">Next</button>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
