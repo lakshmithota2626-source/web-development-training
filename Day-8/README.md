@@ -1,59 +1,72 @@
-# Redux & Client–Server Communication
+# Day 8: React Foundations
 
-A beginner-friendly interactive front-end learning dashboard explaining Redux concepts and client-server communication.
+## Objective
 
-## Project description
-This project is a responsive single-page presentation that teaches the essentials of Redux, state management, HTTP requests, async API flows, and common frontend patterns. It includes interactive examples, a working counter reducer simulation, request/response demos, and a short quiz.
+Learn how React components describe a user interface and how props, state, events, and hooks make it interactive.
+
+## Technologies
+
+- HTML5 and CSS3
+- React 18
+- JavaScript and JSX
+- React DOM
+
+The React lesson loads React and Babel Standalone from the unpkg CDN. A network connection is needed for the interactive demo; no local package installation or build step is required.
 
 ## Features
-- Modern responsive dashboard layout
-- Redux-inspired purple theme
-- Dark and light mode toggle
-- Section navigation with slide controls
-- Previous and Next navigation buttons
-- Progress indicator bar
-- Interactive Redux counter example
-- Request and response simulation with HTTP methods
-- Async loading, success, and error state demo
-- Interactive quiz with feedback
-- Keyboard navigation support
-- Mobile-friendly design
-- No backend, API key, or build setup required
 
-## Technologies used
-- HTML5
-- CSS3
-- JavaScript (Vanilla JS)
+- Beginner-friendly explanations of JSX, components, props, state, events, and hooks.
+- A React-rendered profile preview that updates from a controlled input.
+- An interactive counter demonstrating `useState` and click events.
+- A `useEffect` example that persists the count and updates the browser tab title.
+- Responsive layout with keyboard-visible focus states.
 
-## Folder structure
+## Project Structure
+
 ```text
-Day-8-Redux/
-├── index.html
-├── style.css
-├── script.js
+Day-8/
+├── react.html   # Day 8 React foundations lesson and live demo
+├── index.html   # Existing Redux learning dashboard, preserved
+├── style.css    # Existing Redux dashboard styles, preserved
+├── script.js    # Existing Redux dashboard behavior, preserved
+├── linkedin-post.md # Day 8 React learning draft
 └── README.md
 ```
 
-## How to run
-1. Open the folder in VS Code.
-2. Open `index.html` in a browser, or use a quick local server from the project folder.
-3. If using a local server:
+The Redux dashboard is retained unchanged. It is not counted as the Day 8 React deliverable in the 13-day schedule.
+
+## How to Run
+
+From the repository root, start a local static server:
 
 ```bash
-cd Day-8-Redux
-python -m http.server 5500
+py -m http.server 5500
 ```
 
-Then open:
+Open `http://localhost:5500/Day-8/react.html` in a browser. Keep the server running while using the page. The React/Babel CDN scripts require internet access.
 
-```text
-http://localhost:5500/
-```
+## What I Learned
 
-## What I learned
-- How Redux centralizes application state.
-- Why state management is important in real projects.
-- The difference between actions, reducers, and the store.
-- How client and server communication works through HTTP.
-- Why async request states matter for user experience.
-- How to build clear UI patterns and interactive learning content in plain JavaScript.
+- JSX is transformed into JavaScript before it runs in the browser.
+- Components can be reused and receive read-only inputs through props.
+- State updates cause React to render the component again.
+- Event handlers connect user actions to state changes.
+- Effects are useful for synchronizing React with browser features such as the document title and local storage.
+
+## Challenges
+
+- Distinguishing props, which are passed in, from state, which a component owns and updates.
+- Loading the React demo from a static page while keeping the lesson simple to run.
+
+## Future Improvements
+
+- Revisit the existing Redux dashboard when organizing the Day 9 Redux module.
+- Add a locally installed React development setup in a later project that uses npm tooling.
+
+## GitHub
+
+This lesson is part of the current Web Development Training repository. No external repository URL is listed here.
+
+## LinkedIn Draft
+
+See [`linkedin-post.md`](linkedin-post.md). It is a draft and has not been posted externally.

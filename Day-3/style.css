@@ -146,6 +146,7 @@ body {
 
 /* Lab Cards */
 .lab-card {
+    min-width: 0;
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -155,7 +156,7 @@ body {
 
 .grid-2-col {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
 }
 
@@ -212,7 +213,7 @@ body {
 /* Controls Grid */
 .controls-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
     margin-bottom: 1.5rem;
 }
@@ -311,11 +312,13 @@ body {
 /* Calculator HOF */
 .calc-inputs {
     display: flex;
+    min-width: 0;
     gap: 0.75rem;
     margin: 1.25rem 0;
 }
 
 .num-input, .op-select {
+    min-width: 0;
     background: #0b0f19;
     border: 1px solid var(--border-color);
     color: #fff;
@@ -463,6 +466,17 @@ body {
 
 @media (max-width: 860px) {
     .grid-2-col, .controls-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .calc-inputs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .num-input {
+        width: 100%;
+    }
+    .op-select {
+        grid-column: 1 / -1;
+        width: 100%;
     }
 }

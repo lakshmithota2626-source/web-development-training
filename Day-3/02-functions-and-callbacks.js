@@ -35,7 +35,7 @@ console.log("\n=== 16. ARROW FUNCTIONS (ES6) ===");
 // Arrow functions provide a concise syntax and lexically bind the 'this' value.
 
 // Standard arrow function with body block
-const multiply = (a, b) => {
+const multiplyValues = (a, b) => {
     return a * b;
 };
 
@@ -43,7 +43,7 @@ const multiply = (a, b) => {
 const addTax = (amount) => amount * 1.18;
 const square = n => n * n; // Parentheses optional for single parameter
 
-console.log("Multiply (Arrow):", multiply(6, 7)); // 42
+console.log("Multiply (Arrow):", multiplyValues(6, 7)); // 42
 console.log("Square (Concise Arrow):", square(9)); // 81
 
 console.log("\n=== 17. CALLBACK FUNCTIONS ===");

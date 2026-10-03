@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exercise 4: practise DOM manipulation and event handling with an event RSVP board.">
+  <title>Exercise 4: RSVP Board | Day 9</title>
+  <link rel="stylesheet" href="../style.css?v=13">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="../redux.html"><span class="brand-mark" aria-hidden="true">4</span><span>Day 9 / JavaScript practice</span></a><span class="day-label">Exercise 4</span></div></header>
+  <main class="page-main">
+    <section class="hero"><div><p class="eyebrow">DOM / event handling</p><h1>Workshop RSVP board</h1><p class="hero-copy">Submit an attendee form to create a live RSVP card. Remove attendees from the board without reloading the page.</p></div><aside class="hero-note"><strong>Objective</strong>Practise form events, validation, creating and removing DOM elements, and event delegation.</aside></section>
+    <nav class="anchor-nav" aria-label="Exercise navigation"><a href="../redux.html">Day 9 overview</a><a href="../exercise-2/">Exercise 2</a><a href="../exercise-3/">Exercise 3</a><a href="../exercise-5/">Exercise 5</a></nav>
+    <section class="section exercise-grid">
+      <article class="panel"><p class="section-kicker">Problem and requirements</p><h2>Register for a session</h2><p>Build an RSVP form that accepts a name, email, and session choice, then adds that attendee to the list.</p><ul><li>Prevent default form submission.</li><li>Validate fields and reject duplicate email addresses.</li><li>Create list items with DOM methods and text content.</li><li>Remove a row through one delegated list click handler.</li></ul>
+        <form id="rsvp-form">
+          <div class="field"><label for="attendee-name">Name</label><input id="attendee-name" name="name" autocomplete="name" maxlength="70" required></div>
+          <div class="field"><label for="attendee-email">Email</label><input id="attendee-email" name="email" type="email" autocomplete="email" maxlength="120" required></div>
+          <div class="field"><label for="session-choice">Session</label><select id="session-choice" name="session" required><option value="">Choose a session</option><option>JavaScript Basics</option><option>DOM Workshop</option><option>Project Q&A</option></select></div>
+          <button class="button primary" type="submit">Add RSVP</button>
+        </form>
+        <p id="rsvp-status" class="status" role="status" aria-live="polite">No RSVPs yet. Add the first attendee.</p>
+      </article>
+      <article class="panel"><p class="section-kicker">Dynamic DOM output</p><h2>Attendees <span class="chip" id="attendee-count">0</span></h2><p>New attendee rows are created as DOM nodes. Email addresses are compared without case sensitivity.</p><ul id="attendee-list" class="item-list" aria-label="Workshop attendees"><li id="empty-rsvp" class="list-item">Your attendee list is empty.</li></ul><div class="output-box" id="event-log" aria-live="polite">Submit the form to add an attendee.</div></article>
+    </section>
+    <section class="section"><div class="section-heading"><div><p class="section-kicker">Expected output</p><h2>Events update the page</h2></div></div><div class="concept-grid"><article class="concept-card"><h3>Valid submission</h3><p>A new attendee appears with their name, chosen session, and a remove button. The count increments.</p></article><article class="concept-card"><h3>Duplicate email</h3><p>The same email cannot be registered twice. The form shows an inline message and keeps the current list.</p></article><article class="concept-card"><h3>Remove action</h3><p>Clicking Remove deletes that attendee row and updates the count. The list listener handles dynamically created buttons.</p></article><article class="concept-card"><h3>Practice variation</h3><p>Add a capacity limit and prevent registrations once the event is full.</p></article></div></section>
+  </main>
+  <footer class="site-footer"><span>Exercise 4 / RSVP board</span><a href="../redux.html">Return to Day 9</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

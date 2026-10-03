@@ -94,7 +94,7 @@ const calcResult = document.getElementById('calcResult');
 function add(a, b) { return a + b; }
 
 // Arrow Function
-const multiply = (a, b) => a * b;
+const multiplyInCalculator = (a, b) => a * b;
 
 // Anonymous Function
 const power = function(a, b) { return Math.pow(a, b); };
@@ -116,7 +116,7 @@ btnExecCalc.addEventListener('click', () => {
         callbackFn = add;
         opName = "Normal Function: add(a, b)";
     } else if (op === 'multiply') {
-        callbackFn = multiply;
+        callbackFn = multiplyInCalculator;
         opName = "Arrow Function: (a, b) => a * b";
     } else {
         callbackFn = power;

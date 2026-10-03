@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exercise 3: practise arrays, objects, functions, and loops with a reading tracker.">
+  <title>Exercise 3: Reading Tracker | Day 9</title>
+  <link rel="stylesheet" href="../style.css?v=13">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="../redux.html"><span class="brand-mark" aria-hidden="true">3</span><span>Day 9 / JavaScript practice</span></a><span class="day-label">Exercise 3</span></div></header>
+  <main class="page-main">
+    <section class="hero"><div><p class="eyebrow">Arrays / objects / loops</p><h1>Reading tracker</h1><p class="hero-copy">Keep a small library of books, mark titles as read, and filter the list. Each book is an object stored in an array.</p></div><aside class="hero-note"><strong>Objective</strong>Practise arrays of objects, reusable functions, loops, filtering, and updating a collection.</aside></section>
+    <nav class="anchor-nav" aria-label="Exercise navigation"><a href="../redux.html">Day 9 overview</a><a href="../exercise-2/">Exercise 2</a><a href="../exercise-4/">Exercise 4</a><a href="../exercise-5/">Exercise 5</a></nav>
+    <section class="section exercise-grid">
+      <article class="panel"><p class="section-kicker">Problem and requirements</p><h2>Organize a reading list</h2><p>Add a book with its title, author, and page count. Mark it read or unread and filter the collection.</p><ul><li>Represent every book as an object.</li><li>Store books in an array.</li><li>Use functions to add, filter, summarize, and render.</li><li>Use a loop to display the matching books.</li></ul>
+        <form id="book-form">
+          <div class="field"><label for="book-title">Book title</label><input id="book-title" name="title" required maxlength="80"></div>
+          <div class="field"><label for="book-author">Author</label><input id="book-author" name="author" required maxlength="60"></div>
+          <div class="field"><label for="book-pages">Pages</label><input id="book-pages" name="pages" type="number" min="1" step="1" required></div>
+          <button class="button primary" type="submit">Add book</button>
+        </form>
+        <p id="book-status" class="status" role="status" aria-live="polite">Three sample books are ready.</p>
+      </article>
+      <article class="panel"><p class="section-kicker">Array output</p><h2>Your books</h2><div class="form-row"><div class="field"><label for="book-filter">Show</label><select id="book-filter"><option value="all">All books</option><option value="unread">Unread</option><option value="read">Read</option></select></div><div class="field"><label>Summary</label><output id="book-summary" class="output-box" aria-live="polite"></output></div></div><ul id="book-list" class="item-list" aria-label="Reading list"></ul></article>
+    </section>
+    <section class="section"><div class="section-heading"><div><p class="section-kicker">Expected output</p><h2>Try the data operations</h2></div></div><div class="concept-grid"><article class="concept-card"><h3>Starting collection</h3><p>Three sample book objects appear. The summary begins at 3 books, 1 read, 2 unread.</p></article><article class="concept-card"><h3>After an update</h3><p>Adding a book increases the count. Marking one read changes the read/unread totals and current filter results.</p></article><article class="concept-card"><h3>Where the loop fits</h3><p><code>renderBooks()</code> filters the array, then loops through the matching objects to create list rows.</p></article><article class="concept-card"><h3>Practice variation</h3><p>Add a rating property and a filter that shows books rated 4 or 5.</p></article></div></section>
+  </main>
+  <footer class="site-footer"><span>Exercise 3 / Reading tracker</span><a href="../redux.html">Return to Day 9</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

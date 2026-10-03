@@ -1,72 +1,67 @@
-# Day 2: HTML5 & CSS3 Master Suite & Event Invitation
+# Day 2 — HTML5 & CSS3 Master Cheat Sheets + NEXUS 2026 Event Website
 
-Welcome to **Day 2** of Web Development Training! Today covers advanced HTML5 structuring, complete CSS3 concepts and properties, and a capstone project building a modern, responsive event invitation website.
+## Objective
 
----
+Master modern HTML5 semantics, complete CSS3 design systems, and responsive layouts. Build three interconnected production-grade artifacts: a 20-topic HTML5 master reference, a 22-topic CSS3 interactive visualizer, and a full-featured capstone event landing page for "NEXUS 2026 Tech Summit".
 
-## 📂 Day 2 Files
+## Technologies
+
+- **HTML5:** Semantic landmark tags (`header`, `nav`, `main`, `section`, `article`, `aside`, `footer`), media elements (`picture`, `video`, `audio`), form inputs, data tables
+- **CSS3:** Flexbox (1D layouts), CSS Grid (2D layouts), positioning (`relative`, `absolute`, `sticky`), CSS variables, cubic-bezier transitions, keyframe animations, media queries
+- **JavaScript (Vanilla):** Countdown timer engine, dynamic RSVP pass generation modal, live tag/property search filtering
+
+## Features
+
+- **20-Topic HTML5 Cheat Sheet (`html-cheatsheet.html`):** Complete syntax, real-world examples, and explanations covering Doctype, html, head, title, body, headings, paragraphs, links, images, lists, tables, forms, div, span, semantic HTML, classes, IDs, attributes, comments, and button/input types with live real-time search.
+- **22-Topic CSS3 Master Visualizer (`css-cheatsheet.html`):** Side-by-side interactive demonstrations for selectors, colors, typography, box model, display, positioning, flexbox, grid, transitions, animations, pseudo-classes, pseudo-elements, media queries, borders/radius, gradients, opacity/visibility, overflow, z-index, CSS variables, units, cursors, and transforms.
+- **NEXUS 2026 Event Website (`event-invitation.html`):** High-aesthetic dark glassmorphism event landing page featuring live countdown timer, 3D holographic VIP Pass, keynote speaker showcase, interactive multi-track agenda, venue directions, and dynamic RSVP modal with generated ticket credentials.
+- **Unified Portal (`index.html`):** Central dashboard cleanly linking all Day 2 modules.
+
+## Project Structure
 
 ```text
 Day-2/
-├── index.html            # Main Portal Hub linking all Day 2 modules
-├── style.css             # Main Hub Styling
-├── script.js             # Hub script
-├── html-cheatsheet.html  # Comprehensive HTML5 Cheat Sheet with live search
-├── html-cheatsheet.css   # HTML Cheat Sheet Stylesheet
-├── css-cheatsheet.html   # CSS3 Cheat Sheet with interactive visual demonstrations
-├── css-cheatsheet.css    # CSS3 Cheat Sheet Stylesheet
-├── event-invitation.html # NEXUS 2026 Tech Summit Invitation Website
-├── event-invitation.css  # Event Website Stylesheet (Aesthetics & Responsive Design)
-├── event-invitation.js   # Event Interactivity (Countdown, Pass Generator, Modal)
-└── README.md             # Documentation
+├── index.html            # Central navigation portal for Day 2
+├── style.css             # Main portal styling
+├── script.js             # Portal interactivity
+├── html-cheatsheet.html  # Comprehensive 20-topic HTML5 cheat sheet
+├── html-cheatsheet.css   # HTML cheat sheet styling
+├── css-cheatsheet.html   # 22-topic CSS3 interactive visualizer
+├── css-cheatsheet.css    # CSS visualizer styling
+├── event-invitation.html # NEXUS 2026 Tech Summit landing page
+├── event-invitation.css  # Event website styles with glassmorphism
+├── event-invitation.js   # Countdown timer and ticket generator modal
+├── linkedin-post.md      # Day 2 LinkedIn post draft
+└── README.md             # Standardized Day 2 documentation
 ```
 
----
+## How to Run
 
-## 📚 Topics Covered
+1. Open `Day-2/index.html` directly in any web browser.
+2. From the portal, click into:
+   - **HTML Cheat Sheet:** Explore the 20 syntax cards and use the filter search bar.
+   - **CSS Cheat Sheet:** Test live interactive hover, active, focus, and animation states.
+   - **Event Invitation:** View the countdown timer, fill out the RSVP form, and generate your VIP ticket.
+3. Or launch via local HTTP server from repository root:
+   ```bash
+   python -m http.server 5500
+   ```
+   Navigate to `http://localhost:5500/Day-2/`.
 
-### 1. HTML5 Cheat Sheet (`html-cheatsheet.html`)
-- Document structure (`<!DOCTYPE html>`, `head`, `meta viewport`, `body`)
-- Typography & headings (`h1`-`h6`, `p`, `blockquote`, `code`, `strong`, `em`)
-- Semantic layout (`header`, `nav`, `main`, `section`, `article`, `aside`, `footer`)
-- Links & anchors (relative, absolute, target `_blank`, `mailto:`, `tel:`)
-- Lists (ordered, unordered, description lists)
-- Forms & user inputs (text, email, password, select, radio, checkbox, textarea)
-- Media & embeds (`img`, `audio`, `video`, `iframe`)
-- Data tables (`table`, `thead`, `tbody`, `tr`, `th`, `td`)
-- Live real-time search filter
+## What I Learned
 
-### 2. CSS3 Cheat Sheet (`css-cheatsheet.html`)
-Live visual interactive demonstrations and code snippets for:
-- **Universal selector** (`*`)
-- **Element selector** (`p`, `h2`)
-- **ID selector** (`#uniqueBadge`)
-- **Class selector** (`.highlight-pill`)
-- **Descendant selector** (`.parent .child`)
-- **Attribute selector** (`input[data-status="active"]`)
-- **Colors** (HEX, RGB, RGBA, HSL, named colors)
-- **Fonts** (Google Fonts, web-safe fallbacks, font-weight, font-style)
-- **Text alignment** (left, center, right, justify)
-- **Flexbox** (justify-content, align-items, gap, flex-wrap)
-- **Grid** (grid-template-columns, repeat, minmax, column spanning)
-- **Positioning** (static, relative, absolute, fixed, sticky)
-- **Background images** (url, cover, position, repeat)
-- **Linear gradient** (multi-color angle gradients)
-- **Radial gradient** (circular glow gradients)
-- **Borders** (solid, dashed, dotted, double)
-- **Border radius** (rounded, asymmetric, pill shapes)
-- **Box model** (visual interactive layers: Margin, Border, Padding, Content)
-- **Transitions** (cubic-bezier ease, hover state transforms)
-- **Animations** (@keyframes pulse, spin, bounce)
-- **Typography** (font-size, line-height, letter-spacing, text-shadow, text-transform)
-- **Display properties** (block, inline, inline-block, flex, grid, none)
+- Why semantic HTML improves web accessibility (a11y) and crawlability for search engine indexing.
+- The CSS Box Model hierarchy (`content -> padding -> border -> margin`) and why `box-sizing: border-box` is an essential universal reset rule.
+- Advanced layout orchestration combining Flexbox for 1D navigation alignment and CSS Grid for 2D responsive card matrices.
+- Creating smooth micro-interactions using CSS `cubic-bezier()` transitions and hardware-accelerated transforms (`translate3d`, `scale`).
 
-### 3. NEXUS 2026 Event Invitation Website (`event-invitation.html`)
-- Ambient dark mode with aurora glowing background orbs
-- Live JavaScript countdown timer to the summit date
-- Holographic 3D VIP Pass card preview with dynamic form synchronization
-- Keynote speakers grid with hover effects
-- Event agenda timeline
-- Moscone Center venue card with interactive coordinates
-- Interactive RSVP form that generates a digital ticket modal with unique IDs, seat numbers, and print capabilities
-- 100% mobile, tablet, and desktop responsive
+## Challenges
+
+- **Mobile Viewport Overflow:** Large tables and code snippet blocks initially caused minor horizontal scrolling on screens under 380px. Solved with responsive CSS overflow wrappers and `minmax(0, 1fr)` grid definitions.
+- **Timezone-Safe Countdown Timer:** Preventing UTC offset drift in the JavaScript event countdown timer by standardizing on ISO 8601 target timestamps.
+
+## Future Improvements
+
+- Add a dark/light theme toggle for the cheat sheet pages with persistent theme memory via `localStorage`.
+- Add PDF ticket export functionality using browser print stylesheets for the generated RSVP pass.
+- Expand CSS cheat sheet with Container Queries (`@container`) and subgrid demonstrations.

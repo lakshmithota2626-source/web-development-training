@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 2: HTML5 Master Cheat Sheet</title>
+    <title>Day 2: HTML5 Master Cheat Sheet — Complete 20 Topics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="html-cheatsheet.css">
+    <link rel="stylesheet" href="html-cheatsheet.css?v=3">
 </head>
 <body>
 
@@ -16,8 +16,8 @@
         <div class="container nav-wrapper">
             <a href="index.html" class="back-link">← Day 2 Home</a>
             <div class="badge-title">
-                <span class="tag">HTML5 Reference</span>
-                <h1>HTML Cheat Sheet</h1>
+                <span class="tag">HTML5 Complete Reference</span>
+                <h1>HTML5 Master Cheat Sheet</h1>
             </div>
             <a href="css-cheatsheet.html" class="next-link">CSS Cheat Sheet →</a>
         </div>
@@ -27,197 +27,539 @@
 
         <!-- Search / Quick Filter Bar -->
         <div class="search-section">
-            <input type="text" id="filterInput" placeholder="🔍 Filter tags (e.g. form, table, semantic, audio)..." aria-label="Filter HTML tags" />
+            <input type="text" id="filterInput" placeholder="🔍 Search all 20 HTML topics (e.g. doctype, form, semantic, table, class)..." aria-label="Filter HTML tags" />
         </div>
 
-        <!-- Cheatsheet Grid Sections -->
+        <!-- Cheatsheet Grid Sections: All 20 Topics -->
         <div class="cheatsheet-grid" id="cheatGrid">
 
-            <!-- 1. Document Skeleton -->
-            <section class="sheet-card" data-category="structure">
+            <!-- 1. Doctype -->
+            <section class="sheet-card" data-category="structure doctype">
                 <div class="card-header">
                     <span class="category-icon">📄</span>
-                    <h3>Document Skeleton & Meta</h3>
+                    <h3>1. Doctype Declaration</h3>
                 </div>
                 <div class="card-body">
-                    <pre><code>&lt;!DOCTYPE html&gt;
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Page Title&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;!-- Content goes here --&gt;
-  &lt;/body&gt;
+  &lt;!-- document content --&gt;
 &lt;/html&gt;</code></pre>
-                    <p class="card-tip"><strong>Note:</strong> Always specify <code>meta viewport</code> for responsive mobile rendering.</p>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Informs the web browser that the document is standard HTML5, triggering standards mode rendering rather than legacy quirks mode.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- 2. Typography & Text Formatting -->
-            <section class="sheet-card" data-category="text">
+            <!-- 2. html -->
+            <section class="sheet-card" data-category="structure html root">
+                <div class="card-header">
+                    <span class="category-icon">🌐</span>
+                    <h3>2. &lt;html&gt; (Root Element)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;html lang="en"&gt; ... &lt;/html&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;html lang="en"&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">The top-level container for all HTML elements on the page. The <code>lang</code> attribute sets the document language for screen readers and search engines.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. head -->
+            <section class="sheet-card" data-category="structure head metadata">
+                <div class="card-header">
+                    <span class="category-icon">🧠</span>
+                    <h3>3. &lt;head&gt; (Metadata Container)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;head&gt; ... &lt;/head&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Contains non-rendered machine-readable information about the document: character encoding, viewport settings, external stylesheets, scripts, and search engine metadata.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. title -->
+            <section class="sheet-card" data-category="structure title seo">
+                <div class="card-header">
+                    <span class="category-icon">🏷️</span>
+                    <h3>4. &lt;title&gt; (Document Title)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;title&gt;Page Title&lt;/title&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;title&gt;NEXUS 2026 — Tech Innovation Summit&lt;/title&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Defines the text shown on the browser tab, bookmark title, and primary headline in search engine result pages (SERPs). Crucial for SEO.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. body -->
+            <section class="sheet-card" data-category="structure body visible">
+                <div class="card-header">
+                    <span class="category-icon">👁️</span>
+                    <h3>5. &lt;body&gt; (Visible Content)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;body&gt; ... &lt;/body&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;body&gt;
+  &lt;header&gt;&lt;h1&gt;Welcome&lt;/h1&gt;&lt;/header&gt;
+  &lt;main&gt;&lt;p&gt;Hello World!&lt;/p&gt;&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Encapsulates all rendered content visible to end users, such as text, images, tables, forms, interactive controls, and media players.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Headings -->
+            <section class="sheet-card" data-category="typography headings h1 h2 h3">
                 <div class="card-header">
                     <span class="category-icon">✍️</span>
-                    <h3>Text & Headings</h3>
+                    <h3>6. Headings (&lt;h1&gt; to &lt;h6&gt;)</h3>
                 </div>
                 <div class="card-body">
-                    <pre><code>&lt;h1&gt;Heading 1 (Main Page Title)&lt;/h1&gt;
-&lt;h2&gt;Heading 2 (Sub-section)&lt;/h2&gt;
-&lt;h3&gt;Heading 3 ... up to &lt;h6&gt;&lt;/h3&gt;
-
-&lt;p&gt;Paragraph with &lt;strong&gt;bold text&lt;/strong&gt; and &lt;em&gt;emphasis&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Inline code: &lt;code&gt;const x = 10;&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote cite="url"&gt;Quoted text block&lt;/blockquote&gt;
-&lt;span&gt;Generic inline container&lt;/span&gt;
-&lt;br&gt; &lt;!-- Line break --&gt;
-&lt;hr&gt; &lt;!-- Horizontal thematic divider --&gt;</code></pre>
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+... up to &lt;h6&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;h1&gt;Full-Stack Web Engineering&lt;/h1&gt;
+&lt;h2&gt;Module 1: Front-End Core&lt;/h2&gt;
+&lt;h3&gt;Lesson 2: Semantic HTML5&lt;/h3&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Defines structural hierarchical heading levels. Use exactly one <code>&lt;h1&gt;</code> per page for clean SEO semantics, nesting h2 through h6 in descending order without skipping levels.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- 3. Semantic Layout Elements -->
-            <section class="sheet-card" data-category="semantic">
-                <div class="card-header">
-                    <span class="category-icon">🏗️</span>
-                    <h3>Semantic Structural Tags</h3>
-                </div>
-                <div class="card-body">
-                    <pre><code>&lt;header&gt;Introductory content & nav&lt;/header&gt;
-&lt;nav&gt;Major navigation links&lt;/nav&gt;
-&lt;main&gt;Dominant content of document&lt;/main&gt;
-&lt;section&gt;Thematic grouping of content&lt;/section&gt;
-&lt;article&gt;Self-contained composition&lt;/article&gt;
-&lt;aside&gt;Sidebar or related tangent&lt;/aside&gt;
-&lt;footer&gt;Copyright, author, footer links&lt;/footer&gt;</code></pre>
-                    <p class="card-tip"><strong>Benefit:</strong> Improves SEO and accessibility for screen readers.</p>
-                </div>
-            </section>
-
-            <!-- 4. Links & Navigation -->
-            <section class="sheet-card" data-category="links">
-                <div class="card-header">
-                    <span class="category-icon">🔗</span>
-                    <h3>Links & Anchors</h3>
-                </div>
-                <div class="card-body">
-                    <pre><code>&lt;!-- External link opening in new tab --&gt;
-&lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
-  Visit Site
-&lt;/a&gt;
-
-&lt;!-- Internal page jump --&gt;
-&lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;
-
-&lt;!-- Mail and Telephone links --&gt;
-&lt;a href="mailto:info@domain.com"&gt;Email Us&lt;/a&gt;
-&lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- 5. Lists -->
-            <section class="sheet-card" data-category="lists">
-                <div class="card-header">
-                    <span class="category-icon">📋</span>
-                    <h3>Lists (Ordered & Unordered)</h3>
-                </div>
-                <div class="card-body">
-                    <pre><code>&lt;!-- Unordered Bullet List --&gt;
-&lt;ul&gt;
-  &lt;li&gt;HTML5&lt;/li&gt;
-  &lt;li&gt;CSS3&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!-- Numbered Ordered List --&gt;
-&lt;ol type="1" start="1"&gt;
-  &lt;li&gt;Step One&lt;/li&gt;
-  &lt;li&gt;Step Two&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;!-- Description / Definition List --&gt;
-&lt;dl&gt;
-  &lt;dt&gt;HTTP&lt;/dt&gt;
-  &lt;dd&gt;Hypertext Transfer Protocol&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- 6. Forms & User Inputs -->
-            <section class="sheet-card" data-category="forms">
+            <!-- 7. Paragraphs -->
+            <section class="sheet-card" data-category="typography paragraphs p text">
                 <div class="card-header">
                     <span class="category-icon">📝</span>
-                    <h3>Forms & Inputs</h3>
+                    <h3>7. Paragraphs (&lt;p&gt;)</h3>
                 </div>
                 <div class="card-body">
-                    <pre><code>&lt;form action="/submit" method="POST"&gt;
-  &lt;label for="uname"&gt;Username:&lt;/label&gt;
-  &lt;input type="text" id="uname" name="username" required placeholder="John Doe"&gt;
-
-  &lt;input type="email" name="email" required placeholder="user@mail.com"&gt;
-  &lt;input type="password" name="pwd" required&gt;
-  &lt;input type="checkbox" id="agree"&gt; &lt;label for="agree"&gt;Agree&lt;/label&gt;
-  &lt;input type="radio" name="plan" value="vip"&gt; VIP
-  
-  &lt;select name="country"&gt;
-    &lt;option value="us"&gt;USA&lt;/option&gt;
-    &lt;option value="in"&gt;India&lt;/option&gt;
-  &lt;/select&gt;
-
-  &lt;textarea name="bio" rows="3"&gt;&lt;/textarea&gt;
-  &lt;button type="submit"&gt;Submit Form&lt;/button&gt;
-&lt;/form&gt;</code></pre>
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;p&gt;Paragraph text content.&lt;/p&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;p&gt;
+  Modern web development separates structure (&lt;strong&gt;HTML&lt;/strong&gt;),
+  presentation (&lt;em&gt;CSS&lt;/em&gt;), and behavior (&lt;code&gt;JavaScript&lt;/code&gt;).
+&lt;/p&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Represents a block of editorial text. Browsers automatically add top and bottom margin separation between successive paragraph blocks.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- 7. Media & Embeds -->
-            <section class="sheet-card" data-category="media">
+            <!-- 8. Links -->
+            <section class="sheet-card" data-category="navigation links a anchor">
+                <div class="card-header">
+                    <span class="category-icon">🔗</span>
+                    <h3>8. Hyperlinks (&lt;a&gt;)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;a href="url" target="_blank" rel="noopener noreferrer"&gt;Label&lt;/a&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;!-- External Link --&gt;
+&lt;a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer"&gt;MDN Web Docs&lt;/a&gt;
+&lt;!-- Internal Anchor Jump --&gt;
+&lt;a href="#agenda"&gt;Jump to Event Agenda&lt;/a&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Creates hyperlinks navigating to external web addresses, internal bookmark anchors, emails (<code>mailto:</code>), or telephone dialers (<code>tel:</code>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Images -->
+            <section class="sheet-card" data-category="media images img">
                 <div class="card-header">
                     <span class="category-icon">🖼️</span>
-                    <h3>Media (Images, Audio, Video, iFrames)</h3>
+                    <h3>9. Images (&lt;img&gt;)</h3>
                 </div>
                 <div class="card-body">
-                    <pre><code>&lt;!-- Responsive Image with Alt Text --&gt;
-&lt;img src="image.jpg" alt="A descriptive label" loading="lazy" width="600" height="400"&gt;
-
-&lt;!-- Audio Player --&gt;
-&lt;audio controls&gt;
-  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
-&lt;/audio&gt;
-
-&lt;!-- Video Player --&gt;
-&lt;video controls poster="preview.jpg" width="100%"&gt;
-  &lt;source src="movie.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
-&lt;!-- iFrame Embedded Content --&gt;
-&lt;iframe src="https://maps.google.com" title="Map" width="100%" height="250"&gt;&lt;/iframe&gt;</code></pre>
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;img src="image.jpg" alt="Description" loading="lazy" width="600" height="400"&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;img src="nexus-hero.webp" 
+     alt="NEXUS 2026 Keynote Stage with holographic visuals" 
+     loading="lazy" 
+     width="800" 
+     height="450"&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Embeds visual media. An empty/void tag requiring <code>src</code> and a descriptive <code>alt</code> attribute for screen reader accessibility and broken link fallbacks.</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- 8. Tables -->
-            <section class="sheet-card" data-category="tables">
+            <!-- 10. Lists -->
+            <section class="sheet-card" data-category="lists ul ol li dl">
                 <div class="card-header">
-                    <span class="category-icon">📊</span>
-                    <h3>Data Tables</h3>
+                    <span class="category-icon">📋</span>
+                    <h3>10. Lists (&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;dl&gt;)</h3>
                 </div>
                 <div class="card-body">
-                    <pre><code>&lt;table&gt;
-  &lt;caption&gt;Web Dev Daily Syllabus&lt;/caption&gt;
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;
+&lt;ol&gt;&lt;li&gt;Step&lt;/li&gt;&lt;/ol&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;!-- Unordered List --&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML5 Semantic Core&lt;/li&gt;
+  &lt;li&gt;CSS3 Flexbox & Grid&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- Ordered List --&gt;
+&lt;ol type="1"&gt;
+  &lt;li&gt;Design wireframes&lt;/li&gt;
+  &lt;li&gt;Code structure&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation"><code>&lt;ul&gt;</code> generates bulleted lists, <code>&lt;ol&gt;</code> generates sequenced/numbered lists, and <code>&lt;dl&gt;</code> pairs definitions (<code>&lt;dt&gt;</code>) with terms (<code>&lt;dd&gt;</code>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. Tables -->
+            <section class="sheet-card" data-category="tables table tr th td thead tbody">
+                <div class="card-header">
+                    <span class="category-icon">📊</span>
+                    <h3>11. Data Tables (&lt;table&gt;, &lt;tr&gt;, &lt;th&gt;, &lt;td&gt;)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Cell&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;table&gt;
+  &lt;caption&gt;Summit Track Schedule&lt;/caption&gt;
   &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Day&lt;/th&gt;
-      &lt;th&gt;Topic&lt;/th&gt;
-      &lt;th&gt;Status&lt;/th&gt;
-    &lt;/tr&gt;
+    &lt;tr&gt;&lt;th&gt;Time&lt;/th&gt;&lt;th&gt;Session&lt;/th&gt;&lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Day 1&lt;/td&gt;
-      &lt;td&gt;Client-Server&lt;/td&gt;
-      &lt;td&gt;Completed&lt;/td&gt;
-    &lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;09:00 AM&lt;/td&gt;&lt;td&gt;Keynote: Web3 & AI&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Represents two-dimensional tabular data. Structured using <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tr&gt;</code> (row), <code>&lt;th&gt;</code> (header cell), and <code>&lt;td&gt;</code> (data cell).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. Forms -->
+            <section class="sheet-card" data-category="forms form label">
+                <div class="card-header">
+                    <span class="category-icon">📬</span>
+                    <h3>12. Forms & Labels (&lt;form&gt;, &lt;label&gt;)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;form action="/endpoint" method="POST"&gt;
+  &lt;label for="userEmail"&gt;Email Address&lt;/label&gt;
+  &lt;input id="userEmail" type="email" name="email" required&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;form action="/api/rsvp" method="POST"&gt;
+  &lt;label for="fullName"&gt;Full Name:&lt;/label&gt;
+  &lt;input id="fullName" name="name" type="text" required placeholder="Alex Mercer"&gt;
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation"><code>&lt;form&gt;</code> wraps interactive data submission controls with <code>action</code> and <code>method</code>. The <code>&lt;label&gt;</code> matches an input via <code>for="id"</code> to enable accessible tap focus.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 13. div -->
+            <section class="sheet-card" data-category="layout div container block">
+                <div class="card-header">
+                    <span class="category-icon">📦</span>
+                    <h3>13. &lt;div&gt; (Block Division)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;div class="container"&gt; ... &lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;div class="hero-stats-wrapper"&gt;
+  &lt;div class="stat-box"&gt;&lt;strong&gt;5,000+&lt;/strong&gt; Attendees&lt;/div&gt;
+  &lt;div class="stat-box"&gt;&lt;strong&gt;48&lt;/strong&gt; Speakers&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Generic block-level container element with no inherent semantic meaning. Used as a styling or layout wrapper when no specific semantic tag (like section or article) fits.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 14. span -->
+            <section class="sheet-card" data-category="inline span phrasing">
+                <div class="card-header">
+                    <span class="category-icon">🔍</span>
+                    <h3>14. &lt;span&gt; (Inline Container)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;span class="badge"&gt;Text&lt;/span&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;p&gt;Status: &lt;span class="badge badge-live"&gt;● Streaming Now&lt;/span&gt;&lt;/p&gt;
+&lt;h1&gt;Welcome to &lt;span class="gradient-text"&gt;NEXUS 2026&lt;/span&gt;&lt;/h1&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Generic inline phrasing container. Does not break onto a new line, making it ideal for styling words, badges, icons, or gradient text snippets within sentences.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 15. Semantic HTML -->
+            <section class="sheet-card" data-category="semantic header nav main section article aside footer">
+                <div class="card-header">
+                    <span class="category-icon">🏗️</span>
+                    <h3>15. Semantic HTML5 Elements</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;section&gt; &lt;article&gt; &lt;aside&gt; &lt;footer&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;header&gt;&lt;nav&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/nav&gt;&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Blog Post&lt;/h2&gt;
+    &lt;section&gt;&lt;p&gt;Introduction...&lt;/p&gt;&lt;/section&gt;
+  &lt;/article&gt;
+  &lt;aside&gt;Related Links&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;© 2026 NEXUS&lt;/footer&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Elements that carry clear meaning to the browser and developer. Dramatically improves screen reader accessibility, crawler indexing, and clean code maintainability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 16. Classes -->
+            <section class="sheet-card" data-category="styling classes css selector">
+                <div class="card-header">
+                    <span class="category-icon">🏷️</span>
+                    <h3>16. HTML Classes (<code>class=""</code>)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;element class="class1 class2"&gt; ... &lt;/element&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;button class="btn btn-primary btn-lg"&gt;Register Now&lt;/button&gt;
+&lt;div class="card card-featured shadow-sm"&gt;...&lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Assigns one or more reusable class names to an element. Multiple elements can share the same class, targeted in CSS via dot notation (<code>.btn</code>).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 17. IDs -->
+            <section class="sheet-card" data-category="styling id unique selector">
+                <div class="card-header">
+                    <span class="category-icon">🆔</span>
+                    <h3>17. HTML IDs (<code>id=""</code>)</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;element id="uniqueIdentifier"&gt; ... &lt;/element&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;section id="agenda"&gt;
+  &lt;h2&gt;Conference Agenda&lt;/h2&gt;
+&lt;/section&gt;
+&lt;!-- Targeted via #agenda in CSS & document.getElementById('agenda') --&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Specifies a unique identifier that MUST be unique across the entire HTML page. Used for deep-link anchors (<code>#agenda</code>), JS targeting, and label associations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 18. Attributes -->
+            <section class="sheet-card" data-category="attributes properties html">
+                <div class="card-header">
+                    <span class="category-icon">⚙️</span>
+                    <h3>18. HTML Attributes</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;element name="value" booleanAttribute&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;input type="text" name="city" placeholder="San Francisco" disabled required&gt;
+&lt;a href="https://nexus.dev" target="_blank" rel="noopener"&gt;Visit&lt;/a&gt;
+&lt;div data-user-id="4821" data-role="speaker"&gt;&lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Provides additional values/configurations to elements. Includes core attributes (<code>id</code>, <code>class</code>, <code>title</code>), functional attributes (<code>href</code>, <code>src</code>), booleans (<code>required</code>, <code>disabled</code>), and custom <code>data-*</code> attributes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 19. Comments -->
+            <section class="sheet-card" data-category="syntax comments documentation">
+                <div class="card-header">
+                    <span class="category-icon">💬</span>
+                    <h3>19. HTML Comments</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;!-- Comment text here --&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;!-- ==========================================
+     HERO SECTION: Main event banner & CTA
+     ========================================== --&gt;
+&lt;section class="hero-banner"&gt;
+  &lt;!-- Temporarily hidden for VIP preview: &lt;button&gt;Early Access&lt;/button&gt; --&gt;
+  &lt;h1&gt;NEXUS 2026&lt;/h1&gt;
+&lt;/section&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Allows developers to leave notes, explanations, and modular bookmarks within the source code without rendering anything to the end user's browser view.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 20. Buttons and Input Types -->
+            <section class="sheet-card" data-category="forms buttons inputs interactive">
+                <div class="card-header">
+                    <span class="category-icon">🔘</span>
+                    <h3>20. Buttons & Input Types</h3>
+                </div>
+                <div class="card-body">
+                    <div class="sub-block">
+                        <span class="sub-label">Syntax</span>
+                        <pre><code>&lt;button type="button|submit|reset"&gt;Label&lt;/button&gt;
+&lt;input type="text|password|email|number|checkbox|radio|file|date|color|submit"&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Example</span>
+                        <pre><code>&lt;!-- Interactive Controls --&gt;
+&lt;button type="submit"&gt;Confirm RSVP&lt;/button&gt;
+&lt;input type="text" placeholder="Username"&gt;
+&lt;input type="password" placeholder="Password"&gt;
+&lt;input type="email" placeholder="email@domain.com"&gt;
+&lt;input type="number" min="1" max="10" value="1"&gt;
+&lt;input type="checkbox" id="newsletter"&gt; &lt;label for="newsletter"&gt;Updates&lt;/label&gt;
+&lt;input type="radio" name="pass" value="vip"&gt; VIP
+&lt;input type="file" accept="image/*"&gt;
+&lt;input type="date" value="2026-10-15"&gt;
+&lt;input type="color" value="#6366f1"&gt;</code></pre>
+                    </div>
+                    <div class="sub-block">
+                        <span class="sub-label">Explanation</span>
+                        <p class="explanation">Comprehensive user inputs. <code>&lt;button&gt;</code> supports child HTML/icons, while <code>&lt;input&gt;</code> offers built-in browser validation for emails, passwords, dates, numbers, checkboxes, and color pickers.</p>
+                    </div>
                 </div>
             </section>
 
@@ -225,11 +567,11 @@
     </main>
 
     <footer class="footer">
-        <p>Day 2: HTML5 Master Cheat Sheet Reference • Web Development Training</p>
+        <p>Day 2: HTML5 Master Cheat Sheet Reference (All 20 Topics Covered) • Web Development Training</p>
     </footer>
 
     <script>
-        // Interactive live search filter
+        // Interactive live search filter across all 20 cards
         const filterInput = document.getElementById('filterInput');
         const cards = document.querySelectorAll('.sheet-card');
 

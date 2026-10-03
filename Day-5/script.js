@@ -408,6 +408,21 @@ function closeCartDrawer() {
     cartBackdrop.classList.remove('open');
 }
 
+function renderReceipt(entries) {
+    const modalReceipt = document.getElementById('modalReceipt');
+    modalReceipt.replaceChildren();
+
+    entries.forEach(([label, value], index) => {
+        if (index > 0) {
+            modalReceipt.appendChild(document.createElement('br'));
+        }
+
+        const labelNode = document.createElement('strong');
+        labelNode.textContent = `${label}: `;
+        modalReceipt.append(labelNode, document.createTextNode(value));
+    });
+}
+
 btnToggleCart.addEventListener('click', openCartDrawer);
 btnCloseCart.addEventListener('click', closeCartDrawer);
 cartBackdrop.addEventListener('click', closeCartDrawer);
@@ -424,13 +439,12 @@ document.getElementById('btnCheckout').addEventListener('click', () => {
 
     closeCartDrawer();
 
-    const modalReceipt = document.getElementById('modalReceipt');
-    modalReceipt.innerHTML = `
-        <strong>Order Ref:</strong> ${orderNum}<br>
-        <strong>Items Ordered:</strong> ${currentOrder.length} dish variety<br>
-        <strong>Total Amount:</strong> ${total}<br>
-        <strong>Kitchen Status:</strong> Sent to Executive Chef
-    `;
+    renderReceipt([
+        ['Order Ref', orderNum],
+        ['Items Ordered', `${currentOrder.length} dish variety`],
+        ['Total Amount', total],
+        ['Kitchen Status', 'Sent to Executive Chef']
+    ]);
 
     document.getElementById('modalTitle').textContent = "Order Placed Successfully!";
     document.getElementById('modalDesc').textContent = "Your culinary selections are being prepared fresh in our kitchen.";
@@ -463,14 +477,13 @@ reserveForm.addEventListener('submit', (e) => {
     const time = document.getElementById('resTime').value;
     const guests = document.getElementById('resGuests').value;
 
-    const modalReceipt = document.getElementById('modalReceipt');
-    modalReceipt.innerHTML = `
-        <strong>Guest Name:</strong> ${name}<br>
-        <strong>Reservation Date:</strong> ${date}<br>
-        <strong>Seating Time:</strong> ${time}<br>
-        <strong>Party Size:</strong> ${guests} Guests<br>
-        <strong>Table Type:</strong> Reserved Window Booth
-    `;
+    renderReceipt([
+        ['Guest Name', name],
+        ['Reservation Date', date],
+        ['Seating Time', time],
+        ['Party Size', `${guests} Guests`],
+        ['Table Type', 'Reserved Window Booth']
+    ]);
 
     document.getElementById('modalTitle').textContent = "Table Reserved!";
     document.getElementById('modalDesc').textContent = "A confirmation email & SMS has been dispatched to your contact.";

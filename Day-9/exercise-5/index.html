@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exercise 5: build a study planner using JavaScript arrays, objects, forms, events, filters, and local storage.">
+  <title>Exercise 5: Study Planner | Day 9</title>
+  <link rel="stylesheet" href="../style.css?v=13">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="../redux.html"><span class="brand-mark" aria-hidden="true">5</span><span>Day 9 / JavaScript practice</span></a><span class="day-label">Exercise 5</span></div></header>
+  <main class="page-main">
+    <section class="hero"><div><p class="eyebrow">Mini-application / combine concepts</p><h1>Study planner</h1><p class="hero-copy">Plan a small study session, mark work complete, and filter what needs attention. Your tasks stay saved in this browser.</p></div><aside class="hero-note"><strong>Objective</strong>Combine objects, arrays, functions, forms, DOM events, filtering, and browser storage in one practical app.</aside></section>
+    <nav class="anchor-nav" aria-label="Exercise navigation"><a href="../redux.html">Day 9 overview</a><a href="../exercise-2/">Exercise 2</a><a href="../exercise-3/">Exercise 3</a><a href="../exercise-4/">Exercise 4</a></nav>
+    <section class="section exercise-grid">
+      <article class="panel"><p class="section-kicker">Problem and requirements</p><h2>Turn a goal into a task</h2><p>Create a study task with a title, topic, and due date. Track completion, filter the list, and keep it after a refresh.</p><ul><li>Store each task as an object in an array.</li><li>Add, complete, remove, and filter tasks.</li><li>Render task elements safely in the DOM.</li><li>Persist changes with local storage.</li></ul>
+        <form id="task-form">
+          <div class="field"><label for="task-title">Task</label><input id="task-title" name="title" maxlength="100" placeholder="Review array methods" required></div>
+          <div class="form-row"><div class="field"><label for="task-topic">Topic</label><select id="task-topic" name="topic" required><option>JavaScript</option><option>React</option><option>Redux</option><option>Other</option></select></div><div class="field"><label for="task-date">Due date</label><input id="task-date" name="dueDate" type="date" required></div></div>
+          <button class="button primary" type="submit">Add study task</button>
+        </form>
+        <p id="task-status" class="status" role="status" aria-live="polite">Tasks are stored in this browser only.</p>
+      </article>
+      <article class="panel"><p class="section-kicker">Your study queue</p><h2>Tasks</h2><div class="form-row"><div class="field"><label for="task-filter">Show</label><select id="task-filter"><option value="all">All tasks</option><option value="active">To do</option><option value="completed">Completed</option></select></div><div class="field"><label>Progress</label><output id="task-summary" class="output-box" aria-live="polite">0 total · 0 done</output></div></div><ul id="task-list" class="item-list" aria-label="Study tasks"></ul><p id="empty-tasks" class="notice">No tasks match this view. Add a task or choose a different filter.</p></article>
+    </section>
+    <section class="section"><div class="section-heading"><div><p class="section-kicker">Expected output</p><h2>One app, several concepts</h2></div></div><div class="concept-grid"><article class="concept-card"><h3>Add</h3><p>A valid task appears in the list with its topic and due date, then is saved in local storage.</p></article><article class="concept-card"><h3>Complete</h3><p>The task style and completed count update. The changed task state persists after refresh.</p></article><article class="concept-card"><h3>Filter and remove</h3><p>Choose all, to do, or completed tasks. Remove deletes the task from the list and saved data.</p></article><article class="concept-card"><h3>Practice variation</h3><p>Add a priority field and sort tasks so high-priority items appear first.</p></article></div></section>
+  </main>
+  <footer class="site-footer"><span>Exercise 5 / Study planner</span><a href="../redux.html">Return to Day 9</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

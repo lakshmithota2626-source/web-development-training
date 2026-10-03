@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Exercise 2: practice JavaScript numbers, variables, functions, and conditionals with a monthly budget summary.">
+  <title>Exercise 2: Budget Summary | Day 9</title>
+  <link rel="stylesheet" href="../style.css?v=13">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="../redux.html"><span class="brand-mark" aria-hidden="true">2</span><span>Day 9 / JavaScript practice</span></a><span class="day-label">Exercise 2</span></div></header>
+  <main class="page-main">
+    <section class="hero"><div><p class="eyebrow">Fundamentals / problem solving</p><h1>Monthly budget summary</h1><p class="hero-copy">Enter your monthly income and expenses. The program totals your spending, calculates what remains, and gives a simple status.</p></div><aside class="hero-note"><strong>Objective</strong>Use variables, numbers, arithmetic, functions, and conditionals to solve a practical problem.</aside></section>
+    <nav class="anchor-nav" aria-label="Exercise navigation"><a href="../redux.html">Day 9 overview</a><a href="../exercise-3/">Exercise 3</a><a href="../exercise-4/">Exercise 4</a><a href="../exercise-5/">Exercise 5</a></nav>
+    <section class="section exercise-grid">
+      <article class="panel"><p class="section-kicker">Problem</p><h2>Can the month balance?</h2><p>Build a budget summary from one income value and four expense categories.</p><p class="notice">Requirements: accept non-negative numbers, add the expenses, find the remaining balance and savings percentage, then classify the result.</p>
+        <form id="budget-form">
+          <div class="field"><label for="income">Monthly income ($)</label><input id="income" name="income" type="number" min="0.01" step="0.01" value="3000" required></div>
+          <div class="form-row">
+            <div class="field"><label for="housing">Housing ($)</label><input id="housing" name="housing" type="number" min="0" step="0.01" value="1220" required></div>
+            <div class="field"><label for="food">Food ($)</label><input id="food" name="food" type="number" min="0" step="0.01" value="420" required></div>
+            <div class="field"><label for="transport">Transport ($)</label><input id="transport" name="transport" type="number" min="0" step="0.01" value="180" required></div>
+            <div class="field"><label for="other">Other ($)</label><input id="other" name="other" type="number" min="0" step="0.01" value="130" required></div>
+          </div>
+          <button class="button primary" type="submit">Calculate budget</button>
+        </form>
+        <p id="budget-status" class="status" role="status" aria-live="polite">Ready to calculate.</p>
+      </article>
+      <article class="panel"><p class="section-kicker">Expected output</p><h2>Your result</h2><div id="budget-output" class="output-box" aria-live="polite">Submit the form to see your summary.</div><h3>Try changing the inputs</h3><p>With the starting values, expenses total $1,950.00, leaving $1,050.00 (35.0%) of the $3,000.00 income.</p></article>
+    </section>
+    <section class="section"><div class="section-heading"><div><p class="section-kicker">What to practise</p><h2>Break the problem into steps</h2></div></div><div class="concept-grid"><article class="concept-card"><h3>1. Store values</h3><p>Read numeric values from the form and keep each category in a variable.</p></article><article class="concept-card"><h3>2. Calculate</h3><p>Use a function to sum expenses and calculate the remaining amount and savings rate.</p></article><article class="concept-card"><h3>3. Make a decision</h3><p>Use an if/else condition to identify over-budget, on-track, or review-spending results.</p></article><article class="concept-card"><h3>Practice variation</h3><p>Add a savings goal input and report whether the remaining amount meets that goal.</p></article></div></section>
+  </main>
+  <footer class="site-footer"><span>Exercise 2 / Budget summary</span><a href="../redux.html">Return to Day 9</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

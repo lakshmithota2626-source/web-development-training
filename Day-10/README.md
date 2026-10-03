@@ -1,77 +1,84 @@
-# Day 10: Java Foundations
+# Day 10 — Java Foundations & Object-Oriented Programming
 
 ## Objective
 
-Build a beginner-friendly reference for Java syntax and core programming concepts, with small examples connected to complete source files that can be compiled and run.
+Build a solid foundational understanding of the Java programming language, the Java Virtual Machine (JVM) execution lifecycle, strongly-typed variables, control flow, methods, arrays, and core Object-Oriented Programming (OOP) principles through documented lessons and executable source files.
 
-## Java Topics
+## Technologies
 
-- Introduction to Java and the JVM
-- Class and `main` method syntax
-- Variables and common data types
-- Arithmetic, comparison, and boolean operators
-- `if / else` and `switch`
-- `for`, `while`, and `do-while` loops
-- Arrays and enhanced `for` loops
-- Methods, parameters, and return values
-- Classes, objects, and constructors
-- Basic OOP: encapsulation, abstraction, inheritance, and polymorphism
+- **Java (JDK 17+):** Class blueprints, static `main` entry point, primitive types, loops, reference types, OOP
+- **HTML5 & CSS3:** Interactive reference lesson interface (`java.html`) with responsive styling
+- **Architecture Concepts:** JVM, JRE, JDK, bytecode compilation (`.class`), garbage collection, memory management (Stack vs Heap)
 
-## Files
+## Features
+
+- **Java Foundations Visual Reference (`java.html`):** Comprehensive interactive guide explaining Java history, compilation workflow, data types, operators, conditionals, loops, array traversal, methods, and classes.
+- **Runnable Java Source Code:**
+  - `BasicsDemo.java`: Demonstrates primitive variables, arithmetic/logical operations, `if/else`, `switch`, and `for`/`while` loops.
+  - `ArrayDemo.java`: Demonstrates fixed-size array declarations, indexed loops, enhanced for-each loops, finding min/max, and array summation.
+  - `OopDemo.java`: Demonstrates classes, constructors, private fields, encapsulation, inheritance (`extends`), method overriding (polymorphism), and abstract concepts.
+- **Responsive Web Presentation:** Clear code listings with syntax highlights and compilation tips.
+
+## Project Structure
 
 ```text
 Day-10/
-├── .gitignore
-├── java.html
-├── style.css
-├── README.md
-├── linkedin-post.md
+├── java.html         # Interactive web reference for Java concepts
+├── style.css         # Modern styling for the web guide
+├── linkedin-post.md  # Day 10 LinkedIn post draft
+├── README.md         # Standardized Day 10 documentation
 └── java/
     ├── basics/
-    │   └── BasicsDemo.java
+    │   └── BasicsDemo.java   # Primitive types, conditionals, loops
     ├── arrays/
-    │   └── ArrayDemo.java
+    │   └── ArrayDemo.java    # Array operations, traversals, min/max
     └── oop/
-        └── OopDemo.java
+        └── OopDemo.java      # Classes, inheritance, polymorphism, encapsulation
 ```
 
-`java.html` explains each topic and links to the complete Java example files. `style.css` provides responsive page styling.
+## How to Run
 
-## How to Execute Java Programs
+1. **View the Web Documentation:**
+   Open `Day-10/java.html` directly in your browser or serve locally:
+   ```bash
+   python -m http.server 5500
+   ```
+   Navigate to `http://localhost:5500/Day-10/java.html`.
 
-Install a JDK that provides both `javac` and `java`. From the `Day-10` folder, compile and run each example:
+2. **Compile and Run Java Files:**
+   *Note: Requires a Java Development Kit (JDK 17 or later) installed on your system with `javac` and `java` available in your system PATH.*
+   
+   From the `Day-10/` folder:
+   ```bash
+   # Compile to an output directory
+   javac -d out java/basics/BasicsDemo.java
+   java -cp out BasicsDemo
 
-```bash
-javac -d out java/basics/BasicsDemo.java
-java -cp out BasicsDemo
+   javac -d out java/arrays/ArrayDemo.java
+   java -cp out ArrayDemo
 
-javac -d out java/arrays/ArrayDemo.java
-java -cp out ArrayDemo
-
-javac -d out java/oop/OopDemo.java
-java -cp out OopDemo
-```
-
-The `-d out` option places generated class files in an output directory instead of beside the source files. Open `java.html` directly in a browser or use a local static server to view the lesson.
+   javac -d out java/oop/OopDemo.java
+   java -cp out OopDemo
+   ```
 
 ## What I Learned
 
-- A Java program uses classes and an entry-point `main` method.
-- Variables have declared types, and operators work on those values.
-- Conditions select a path; loops repeat work.
-- Arrays hold a fixed-size sequence of values of one type.
-- Methods package reusable behavior with inputs and return values.
-- Classes and objects connect data with behavior; constructors initialize objects.
-- OOP concepts help structure related types and control how they expose behavior.
+- How the JVM architecture achieves platform independence ("Write Once, Run Anywhere") through bytecode execution.
+- Strict static typing in Java compared to dynamic typing in JavaScript: every variable, parameter, and method return must declare its type.
+- The distinction between primitive types stored directly on the Stack (`int`, `double`, `boolean`) and reference objects stored in Heap memory.
+- Core pillars of OOP:
+  - **Encapsulation:** Hiding internal state with `private` access modifiers and exposing controlled getters/setters.
+  - **Inheritance:** Code reuse through `extends` and calling parent constructors with `super()`.
+  - **Polymorphism:** Method overriding and treating derived instances through superclass references.
+  - **Abstraction:** Hiding complex implementation details using abstract classes and interfaces.
 
-## Practice Checklist
+## Challenges
 
-- [ ] Change the values and output in `BasicsDemo.java`.
-- [ ] Add another score and update the array output.
-- [ ] Add a method that returns the larger of two integers.
-- [ ] Create another `Student` object and observe the overridden method.
-- [ ] Compile and run all three examples with a local JDK.
+- **Transitioning from JavaScript to Java:** Adapting to static type constraints, explicit access specifiers (`public`, `private`, `protected`), and mandatory class wrappers for entry-point logic.
+- **Environment Verification:** Recognizing that compilation requires a local JDK installation (`javac`), distinct from web browser runtimes.
 
-## Verification Note
+## Future Improvements
 
-The lesson page and source-file links were checked in a browser. A Java compiler was not available in the authoring environment, so the `.java` files still need to be compiled with a local JDK using the commands above.
+- Add examples covering Java Collections Framework (`ArrayList`, `HashMap`, `HashSet`).
+- Implement exception handling (`try-catch-finally`, custom exceptions).
+- Introduce Java Streams API and Lambda expressions (`map`, `filter`, `collect`) to parallel JavaScript functional methods.

@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --portal-ink: #172033;
+  --portal-muted: #667085;
+  --portal-blue: #2563eb;
+  --portal-line: #e5e7eb;
+  --portal-paper: #ffffff;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #f5f7fb;
@@ -185,6 +193,52 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.info-section {
+  padding: 64px 7%;
+  background: var(--portal-paper);
+}
+
+.info-inner { max-width: 1200px; margin: 0 auto; }
+
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.technology-list li {
+  padding: 8px 12px;
+  border: 1px solid var(--portal-line);
+  background: #f8fafc;
+  color: var(--portal-ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.projects-section { background: #f5f7fb; }
+.highlight-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.highlight-grid a { display: grid; gap: 7px; min-width: 0; padding: 18px; border: 1px solid var(--portal-line); background: var(--portal-paper); color: inherit; text-decoration: none; }
+.highlight-grid a:hover, .highlight-grid a:focus-visible { border-color: #93c5fd; box-shadow: 0 8px 20px rgba(23, 32, 51, 0.07); }
+.highlight-grid strong { color: var(--portal-ink); font-size: 15px; }
+.highlight-grid span { color: var(--portal-muted); font-size: 12px; line-height: 1.5; }
+.journey-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--portal-line); }
+.journey-grid p { display: grid; gap: 7px; margin: 0; padding: 18px; }
+.journey-grid p + p { border-left: 1px solid var(--portal-line); }
+.journey-grid strong { color: var(--portal-blue); font-size: 13px; }
+.journey-grid span { color: var(--portal-muted); font-size: 12px; line-height: 1.55; }
+.github-section { background: #111827; color: white; }
+.github-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.github-label { margin: 0 0 8px; color: #93c5fd; font-family: Consolas, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; }
+.github-inner h2 { margin: 0; font-size: 26px; }
+.github-inner > div > p:last-child { max-width: 680px; margin: 9px 0 0; color: #cbd5e1; font-size: 12px; line-height: 1.6; }
+.github-link { flex: 0 0 auto; padding: 11px 14px; background: var(--portal-blue); color: white; font-size: 12px; font-weight: 700; text-decoration: none; }
+.github-link:hover { background: #1d4ed8; }
+
 /* Footer */
 footer {
   text-align: center;
@@ -209,4 +263,14 @@ footer {
   nav a {
     margin-left: 10px;
   }
+
+  .highlight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .github-inner { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 520px) {
+  .info-section { padding: 48px 7%; }
+  .highlight-grid, .journey-grid { grid-template-columns: minmax(0, 1fr); }
+  .journey-grid p + p { border-top: 1px solid var(--portal-line); border-left: 0; }
+  .github-inner h2 { font-size: 22px; }
 }

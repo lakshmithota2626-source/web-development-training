@@ -131,12 +131,13 @@ body {
 /* Cheatsheet Grid */
 .cheatsheet-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
 .sheet-card {
+    min-width: 0;
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -169,6 +170,7 @@ body {
 
 /* Code Snippet Blocks */
 pre {
+    max-width: 100%;
     background: var(--code-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -180,6 +182,33 @@ code {
     font-family: var(--font-mono);
     font-size: 0.82rem;
     color: #e2e8f0;
+}
+
+.sub-block {
+    margin-bottom: 0.85rem;
+}
+
+.sub-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    background: rgba(249, 115, 22, 0.12);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.35rem;
+}
+
+.explanation {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
 }
 
 .card-tip {
@@ -206,7 +235,7 @@ code {
 
 @media (max-width: 860px) {
     .cheatsheet-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .nav-wrapper {
         flex-direction: column;

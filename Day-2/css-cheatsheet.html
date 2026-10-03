@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css-cheatsheet.css">
+    <link rel="stylesheet" href="css-cheatsheet.css?v=2">
 </head>
 <body>
 
@@ -37,6 +37,9 @@
             <a href="#backgrounds-gradients">Backgrounds & Gradients</a>
             <a href="#borders-radius">Borders & Radius</a>
             <a href="#transitions-animations">Transitions & Animations</a>
+            <a href="#pseudo">Pseudo Classes & Elements</a>
+            <a href="#media-queries">Media Queries</a>
+            <a href="#modern-css">Variables, Units & Cursors</a>
         </nav>
 
         <div class="sections-wrapper">
@@ -452,6 +455,169 @@
                             <div class="anim-box pulse-box">Pulse</div>
                             <div class="anim-box spin-box">Spin</div>
                             <div class="anim-box bounce-box">Bounce</div>
+                        </div>
+                    </div>
+                </div>
+            <!-- 10. PSEUDO-CLASSES & PSEUDO-ELEMENTS -->
+            <section class="demo-section" id="pseudo">
+                <div class="section-title">
+                    <h2>10. Pseudo-Classes & Pseudo-Elements</h2>
+                    <p>Target elements based on user interaction states or inject virtual elements.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Pseudo-classes -->
+                    <div class="demo-card">
+                        <h3>Pseudo-Classes (:hover, :focus, :active, :nth-child)</h3>
+                        <p>Matches element interaction states or document structural indices.</p>
+                        <pre><code>.pseudo-btn:hover { background: #818cf8; }
+.pseudo-input:focus { border-color: #38bdf8; outline: 2px solid rgba(56,189,248,0.4); }
+.pseudo-btn:active { transform: scale(0.95); }
+.nth-list li:nth-child(odd) { background: rgba(99,102,241,0.15); }
+.nth-list li:nth-child(even) { background: rgba(16,185,129,0.15); }</code></pre>
+                        <div class="live-preview pseudo-demo-box">
+                            <div class="pseudo-controls">
+                                <button type="button" class="pseudo-test-btn">Hover & Click Me (:active)</button>
+                                <input type="text" class="pseudo-test-input" placeholder="Click to test :focus state" aria-label="Pseudo focus test">
+                            </div>
+                            <ul class="nth-test-list">
+                                <li>Item 1 (nth-child odd)</li>
+                                <li>Item 2 (nth-child even)</li>
+                                <li>Item 3 (nth-child odd)</li>
+                                <li>Item 4 (nth-child even)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pseudo-elements -->
+                    <div class="demo-card">
+                        <h3>Pseudo-Elements (::before, ::after, ::placeholder)</h3>
+                        <p>Injects stylized decorative content or targets specific element fragments.</p>
+                        <pre><code>.badge-decorated::before {
+  content: "★";
+  color: #fbbf24;
+  margin-right: 6px;
+}
+.badge-decorated::after {
+  content: " →";
+  color: #38bdf8;
+}
+input::placeholder {
+  color: #a855f7;
+  font-style: italic;
+}</code></pre>
+                        <div class="live-preview pseudo-elem-box">
+                            <span class="badge-decorated">VIP Pass Reserved</span>
+                            <div class="input-full-wrapper">
+                                <input type="text" class="placeholder-styled-input" placeholder="Custom styled ::placeholder" aria-label="Custom styled placeholder">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. MEDIA QUERIES & RESPONSIVE DESIGN -->
+            <section class="demo-section" id="media-queries">
+                <div class="section-title">
+                    <h2>11. Media Queries & Responsive Design</h2>
+                    <p>Adapt layouts dynamically across mobile, tablet, desktop, and large displays.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- Mobile-First Media Queries -->
+                    <div class="demo-card">
+                        <h3>Mobile-First (min-width) vs Desktop-First (max-width)</h3>
+                        <p>Standard responsive design breakpoints using clean CSS media queries.</p>
+                        <pre><code>/* Base styles apply to mobile first */
+.responsive-box {
+  width: 100%;
+  background: #3b82f6; /* Mobile: Blue */
+}
+
+/* Tablet: >= 640px */
+@media (min-width: 640px) {
+  .responsive-box { background: #8b5cf6; } /* Tablet: Purple */
+}
+
+/* Desktop: >= 1024px */
+@media (min-width: 1024px) {
+  .responsive-box { background: #10b981; } /* Desktop: Green */
+}</code></pre>
+                        <div class="live-preview">
+                            <div class="viewport-indicator">
+                                <span class="device-badge mobile-badge">Mobile (&lt;640px)</span>
+                                <span class="device-badge tablet-badge">Tablet (640-1023px)</span>
+                                <span class="device-badge desktop-badge">Desktop (≥1024px)</span>
+                            </div>
+                            <p class="viewport-hint">Resize browser window to observe live breakpoint changes!</p>
+                        </div>
+                    </div>
+
+                    <!-- Flexible Container / Grid Breakpoint -->
+                    <div class="demo-card">
+                        <h3>Fluid Responsive Grid System</h3>
+                        <p>Auto-fit grid columns avoiding rigid media queries where possible.</p>
+                        <pre><code>.fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+}</code></pre>
+                        <div class="live-preview">
+                            <div class="fluid-preview-grid">
+                                <div class="fluid-cell">Col A</div>
+                                <div class="fluid-cell">Col B</div>
+                                <div class="fluid-cell">Col C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. MODERN CSS: VARIABLES, UNITS, OVERFLOW, OPACITY & CURSORS -->
+            <section class="demo-section" id="modern-css">
+                <div class="section-title">
+                    <h2>12. Modern CSS Utilities & Layout Controls</h2>
+                    <p>CSS Custom Properties, relative units, opacity vs visibility, overflow behavior, and cursor states.</p>
+                </div>
+
+                <div class="demo-grid">
+                    <!-- CSS Variables & Units -->
+                    <div class="demo-card">
+                        <h3>CSS Variables & Relative Units</h3>
+                        <p>Define dynamic design tokens with <code>--variable-name</code> and relative units (<code>rem</code>, <code>em</code>, <code>vh</code>, <code>vw</code>, <code>%</code>).</p>
+                        <pre><code>:root {
+  --brand-color: #f97316;
+  --spacing-base: 1rem; /* 16px relative to root */
+}
+
+.custom-token-box {
+  background: var(--brand-color);
+  padding: calc(var(--spacing-base) * 0.75);
+  font-size: 1.1rem;
+}</code></pre>
+                        <div class="live-preview">
+                            <div class="token-demo-box">Themed via <code>var(--primary-grad)</code> & <code>1.25rem</code> padding</div>
+                        </div>
+                    </div>
+
+                    <!-- Opacity, Visibility, Overflow & Cursors -->
+                    <div class="demo-card">
+                        <h3>Opacity, Visibility, Overflow & Cursors</h3>
+                        <p>Control visual rendering, scrollbars, and interaction cursors.</p>
+                        <pre><code>.semi-transparent { opacity: 0.6; }
+.scroll-box { overflow-y: scroll; max-height: 70px; }
+.cursor-grab { cursor: grab; }
+.cursor-disabled { cursor: not-allowed; }</code></pre>
+                        <div class="live-preview util-showcase">
+                            <div class="util-box util-opacity">Opacity: 0.5</div>
+                            <div class="util-box util-grab">cursor: grab ✋</div>
+                            <div class="util-box util-not-allowed">cursor: not-allowed 🚫</div>
+                            <div class="util-overflow-box">
+                                <p>Scrollable Content: Line 1</p>
+                                <p>Line 2 with overflow scroll</p>
+                                <p>Line 3 hidden without scroll</p>
+                                <p>Line 4 reached!</p>
+                            </div>
                         </div>
                     </div>
                 </div>

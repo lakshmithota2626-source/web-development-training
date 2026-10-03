@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#edf2ef">
+  <meta name="description" content="A beginner-friendly visual guide to client-server communication, HTTP requests, server processing, databases, and responses.">
+  <title>Client–Server Communication | Web Systems Field Guide</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172b2a;
+      --muted: #5e716f;
+      --paper: #fbfcf8;
+      --canvas: #edf2ef;
+      --line: #d8e2dd;
+      --green: #126c5a;
+      --green-soft: #e0f1e8;
+      --coral: #e87555;
+      --coral-soft: #fff0e9;
+      --blue: #416f93;
+      --blue-soft: #e8f0f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(100% - 32px, 940px);
+      margin: 36px auto 64px;
+    }
+
+    .poster {
+      position: relative;
+      overflow: hidden;
+      padding: 54px 58px 48px;
+      background-color: var(--paper);
+      background-image: radial-gradient(#dbe5de 0.75px, transparent 0.75px);
+      background-size: 18px 18px;
+      border: 1px solid #dce5df;
+      box-shadow: 0 22px 60px rgba(23, 43, 42, 0.1);
+      isolation: isolate;
+    }
+
+    .poster::before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 10px;
+      background: linear-gradient(90deg, var(--green) 0 58%, var(--coral) 58% 76%, #e3b94b 76%);
+      content: "";
+    }
+
+    .masthead,
+    .eyebrow,
+    .node-label,
+    .flow-label,
+    .step-number,
+    .footer-note {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .masthead span:last-child { text-align: right; }
+
+    .intro { max-width: 690px; margin: 48px 0 34px; }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(42px, 6vw, 66px);
+      font-weight: 750;
+      letter-spacing: -0.035em;
+      line-height: 0.99;
+    }
+
+    .lede {
+      max-width: 600px;
+      margin: 19px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .diagram {
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.83);
+    }
+
+    .diagram-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .diagram-heading h2 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .secure-tag {
+      padding: 5px 9px;
+      border: 1px solid #b8d8c8;
+      background: var(--green-soft);
+      color: var(--green);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.9fr) minmax(155px, 1.1fr) minmax(210px, 1.35fr);
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .node,
+    .server-stack {
+      min-width: 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .client-node { border-top: 4px solid var(--blue); }
+    .server-stack { border-top: 4px solid var(--green); }
+
+    .node-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .node-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 10px;
+      place-items: center;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .server-icon { background: var(--green-soft); color: var(--green); }
+    .database-icon { background: #fff2d9; color: #9a6811; }
+
+    .node h3,
+    .server-stack h3 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .node p,
+    .server-stack p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .network-node {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8px 0;
+      text-align: center;
+    }
+
+    .network-globe {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 8px;
+      place-items: center;
+      border: 1px solid #bfd1dc;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 23px;
+    }
+
+    .network-node h3 { margin: 0; font-size: 13px; }
+    .network-node p { margin: 4px 0 10px; color: var(--muted); font-size: 10px; }
+
+    .route {
+      position: relative;
+      height: 21px;
+      margin: 3px 0;
+      border-top: 2px solid var(--green);
+    }
+
+    .route::after {
+      position: absolute;
+      top: -6px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      transform: rotate(45deg);
+      border-top: 2px solid var(--green);
+      border-right: 2px solid var(--green);
+      content: "";
+    }
+
+    .route.response { transform: rotate(180deg); border-color: var(--coral); }
+    .route.response::after { border-color: var(--coral); }
+
+    .flow-label {
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      padding: 0 4px;
+      transform: translateX(-50%);
+      background: white;
+      color: var(--green);
+      font-size: 8px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .response .flow-label { color: #bd5539; }
+
+    .server-stack { display: grid; gap: 10px; }
+
+    .server-part {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      padding: 11px;
+      background: #f5faf6;
+      border: 1px solid #d9e9df;
+    }
+
+    .server-part .node-icon { width: 34px; height: 34px; margin: 0; font-size: 17px; }
+    .server-part h3 { font-size: 12px; }
+    .server-part p { margin-top: 3px; font-size: 10px; }
+    .database-part { background: #fffaf0; border-color: #f0e3c4; }
+
+    .return-note {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: var(--coral-soft);
+      color: #874530;
+      font-size: 11px;
+    }
+
+    .return-note strong { color: #71351f; }
+
+    .steps { margin-top: 25px; }
+
+    .steps h2 {
+      margin: 0 0 12px;
+      font-size: 14px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .step {
+      min-width: 0;
+      padding: 13px 12px 14px 0;
+    }
+
+    .step + .step { padding-left: 12px; border-left: 1px solid var(--line); }
+
+    .step-number {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--coral);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .step p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .step strong { color: var(--ink); }
+
+    .poster-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 19px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer-note { font-size: 9px; font-weight: 700; }
+
+    .post-card {
+      margin-top: 28px;
+      padding: 26px 30px;
+      border-left: 4px solid var(--coral);
+      background: var(--paper);
+      box-shadow: 0 8px 24px rgba(23, 43, 42, 0.06);
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .post-header h2 { margin: 0; font-size: 17px; }
+
+    .copy-button {
+      flex: 0 0 auto;
+      padding: 8px 11px;
+      border: 1px solid #b9cbc3;
+      background: transparent;
+      color: var(--green);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .copy-button:hover { background: var(--green-soft); }
+    .copy-button:focus-visible { outline: 3px solid #82baa4; outline-offset: 3px; }
+    .post-copy { margin: 0; color: #334745; font-size: 14px; line-height: 1.75; white-space: pre-line; }
+    .copy-status { min-height: 1.4em; margin: 7px 0 0; color: var(--green); font-size: 12px; }
+
+    @media (max-width: 720px) {
+      .page { width: min(100% - 20px, 560px); margin: 10px auto 30px; }
+      .poster { padding: 35px 24px 28px; }
+      .intro { margin: 35px 0 25px; }
+      .lede { font-size: 15px; }
+      .architecture { grid-template-columns: 1fr; gap: 8px; }
+      .node, .server-stack { padding: 13px; }
+      h1 { font-size: 36px; }
+      .diagram-heading { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .secure-tag { white-space: normal; }
+      .network-node { padding: 6px 20px 2px; }
+      .route { width: min(100%, 220px); margin: 3px auto; }
+      .server-stack { grid-template-columns: 1fr 1fr; }
+      .server-stack > .node-label { grid-column: 1 / -1; margin-bottom: 0; }
+      .server-part { grid-template-columns: 30px minmax(0, 1fr); padding: 9px; gap: 7px; }
+      .server-part .node-icon { width: 30px; height: 30px; }
+      .step-grid { grid-template-columns: 1fr 1fr; }
+      .step { padding: 12px 10px 12px 0; }
+      .step + .step { padding-left: 10px; }
+      .step:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+      .step:nth-child(4) { border-top: 1px solid var(--line); }
+    }
+
+    @media (max-width: 420px) {
+      .poster { padding-right: 17px; padding-left: 17px; }
+      .masthead { font-size: 9px; }
+      .diagram { padding: 13px; }
+      .diagram-heading { align-items: flex-start; }
+      .secure-tag { font-size: 9px; }
+      .server-stack { grid-template-columns: 1fr; }
+      .server-stack > .node-label { grid-column: auto; }
+      .post-card { padding: 20px 17px; }
+      .post-header { align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: 100%; max-width: none; margin: 0; }
+      .poster { box-shadow: none; }
+      .post-card { break-inside: avoid; box-shadow: none; }
+      .copy-button, .copy-status { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="poster" aria-labelledby="poster-title">
+      <div class="masthead">
+        <span>Web systems / field guide 01</span>
+        <span>How the web talks</span>
+      </div>
+
+      <header class="intro">
+        <p class="eyebrow">The request–response cycle</p>
+        <h1 id="poster-title">Client–server<br>communication</h1>
+        <p class="lede">A client asks for something. A server does the work and sends something back. That simple exchange is behind every page you open.</p>
+      </header>
+
+      <section class="diagram" aria-labelledby="diagram-title">
+        <div class="diagram-heading">
+          <h2 id="diagram-title">One request. One response.</h2>
+          <span class="secure-tag">HTTPS = encrypted connection</span>
+        </div>
+
+        <div class="architecture">
+          <section class="node client-node" aria-label="Client browser">
+            <span class="node-label">01 / Starts here</span>
+            <span class="node-icon" aria-hidden="true">&lt;/&gt;</span>
+            <h3>Client</h3>
+            <p>Your browser or app asks for a page or data.</p>
+          </section>
+
+          <section class="network-node" aria-label="Internet carrying request and response">
+            <span class="network-globe" aria-hidden="true">◎</span>
+            <h3>Internet / network</h3>
+            <p>Messages travel between devices</p>
+            <div class="route request" aria-label="Request travels to server"><span class="flow-label">Request →</span></div>
+            <div class="route response" aria-label="Response returns to client"><span class="flow-label">← Response</span></div>
+          </section>
+
+          <section class="server-stack" aria-label="Web server, application, and database">
+            <span class="node-label">02–03 / Server side</span>
+            <div class="server-part">
+              <span class="node-icon server-icon" aria-hidden="true">▤</span>
+              <div><h3>Web server</h3><p>Receives the HTTP/HTTPS request.</p></div>
+            </div>
+            <div class="server-part">
+              <span class="node-icon server-icon" aria-hidden="true">⚙</span>
+              <div><h3>Application processing</h3><p>Runs the logic and prepares an answer.</p></div>
+            </div>
+            <div class="server-part database-part">
+              <span class="node-icon database-icon" aria-hidden="true">▥</span>
+              <div><h3>Database</h3><p>Stores or looks up information when needed.</p></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="return-note">
+          <span aria-hidden="true">↩</span>
+          <span><strong>Server response:</strong> status + content (often HTML or JSON) returns to the client, which displays or uses it.</span>
+        </div>
+      </section>
+
+      <section class="steps" aria-labelledby="steps-title">
+        <h2 id="steps-title">The flow in four steps</h2>
+        <div class="step-grid">
+          <div class="step"><span class="step-number">01 / Ask</span><p><strong>You take an action.</strong> The client creates an HTTP or HTTPS request.</p></div>
+          <div class="step"><span class="step-number">02 / Send</span><p><strong>The network delivers it</strong> to the right web server.</p></div>
+          <div class="step"><span class="step-number">03 / Work</span><p><strong>The server processes it,</strong> checking or updating a database if needed.</p></div>
+          <div class="step"><span class="step-number">04 / Reply</span><p><strong>The response arrives</strong> back at the client and appears on your screen.</p></div>
+        </div>
+      </section>
+
+      <footer class="poster-footer">
+        <span>Client asks. Server answers.</span>
+        <span class="footer-note">Web development / foundations</span>
+      </footer>
+    </article>
+
+    <section class="post-card" aria-labelledby="post-title">
+      <div class="post-header">
+        <h2 id="post-title">LinkedIn post</h2>
+        <button class="copy-button" type="button" id="copy-post">Copy post</button>
+      </div>
+      <p class="post-copy" id="post-copy">Ever wondered what happens when you open a website?
+
+Your browser (the client) sends a request over the internet using HTTP or HTTPS. A web server receives it, runs the application logic, and may look up information in a database. Then it sends a response back, and your browser displays the result.
+
+Think of ordering at a coffee shop: you place an order, the team prepares it, and your drink comes back to you. On the web, the client places the request and the server returns the response.
+
+That’s client-server communication: a request, some work, and a response.
+
+#WebDevelopment #HTTP #WebDev #TechEducation</p>
+      <p class="copy-status" id="copy-status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+    const copyButton = document.querySelector("#copy-post");
+    const postCopy = document.querySelector("#post-copy");
+    const copyStatus = document.querySelector("#copy-status");
+
+    copyButton.addEventListener("click", async () => {
+      const text = postCopy.textContent;
+
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const temporaryInput = document.createElement("textarea");
+        temporaryInput.value = text;
+        temporaryInput.setAttribute("readonly", "");
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.opacity = "0";
+        document.body.append(temporaryInput);
+        temporaryInput.select();
+        document.execCommand("copy");
+        temporaryInput.remove();
+      }
+
+      copyStatus.textContent = "Post copied to clipboard.";
+      copyButton.textContent = "Copied";
+      window.setTimeout(() => { copyButton.textContent = "Copy post"; }, 1800);
+    });
+  </script>
+</body>
+</html>

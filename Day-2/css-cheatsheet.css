@@ -180,11 +180,12 @@ pre code {
 
 .demo-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
 }
 
 .demo-card {
+    min-width: 0;
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -204,6 +205,7 @@ pre code {
 }
 
 pre {
+    max-width: 100%;
     background: #080c14;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -214,6 +216,8 @@ pre {
 
 /* Live Preview Boxes */
 .live-preview {
+    min-width: 0;
+    max-width: 100%;
     background: rgba(11, 15, 25, 0.7);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -601,6 +605,255 @@ pre {
     animation: bounceInfinite 1.5s infinite ease-in-out;
 }
 
+/* 10. PSEUDO CLASSES & PSEUDO ELEMENTS */
+.pseudo-demo-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pseudo-controls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.pseudo-test-btn {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pseudo-test-btn:hover {
+    background: #818cf8;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.pseudo-test-btn:active {
+    transform: scale(0.95);
+    background: #4f46e5;
+}
+
+.pseudo-test-input {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.pseudo-test-input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.nth-test-list {
+    list-style: none;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.nth-test-list li {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.nth-test-list li:nth-child(odd) {
+    background: rgba(99, 102, 241, 0.15);
+    color: #c7d2fe;
+}
+
+.nth-test-list li:nth-child(even) {
+    background: rgba(16, 185, 129, 0.15);
+    color: #a7f3d0;
+}
+
+.pseudo-elem-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-decorated {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    color: #f8fafc;
+    display: inline-block;
+}
+
+.badge-decorated::before {
+    content: "★ ";
+    color: #fbbf24;
+}
+
+.badge-decorated::after {
+    content: " →";
+    color: #38bdf8;
+}
+
+.placeholder-styled-input {
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-sm);
+    color: #fff;
+}
+
+.placeholder-styled-input::placeholder {
+    color: #c084fc;
+    font-style: italic;
+}
+
+.input-full-wrapper {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.viewport-hint {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+/* 11. MEDIA QUERIES DEMO */
+.viewport-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+.device-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0.35;
+    transition: all 0.3s;
+}
+
+/* Default / Mobile: Mobile is active */
+.mobile-badge {
+    background: #3b82f6;
+    color: #fff;
+    opacity: 1;
+}
+
+.tablet-badge {
+    background: #8b5cf6;
+    color: #fff;
+}
+
+.desktop-badge {
+    background: #10b981;
+    color: #fff;
+}
+
+@media (min-width: 640px) {
+    .mobile-badge { opacity: 0.35; }
+    .tablet-badge { opacity: 1; box-shadow: 0 0 12px rgba(139, 92, 246, 0.6); }
+}
+
+@media (min-width: 1024px) {
+    .tablet-badge { opacity: 0.35; box-shadow: none; }
+    .desktop-badge { opacity: 1; box-shadow: 0 0 12px rgba(16, 185, 129, 0.6); }
+}
+
+.fluid-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 8px;
+    width: 100%;
+}
+
+.fluid-cell {
+    background: rgba(99, 102, 241, 0.25);
+    border: 1px solid var(--primary);
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* 12. MODERN CSS TOKENS & UTILITIES */
+.token-demo-box {
+    background: var(--primary-grad);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+.util-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.util-box {
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.util-opacity {
+    opacity: 0.5;
+    background: #f43f5e;
+    color: #fff;
+}
+
+.util-grab {
+    cursor: grab;
+    background: #3b82f6;
+    color: #fff;
+}
+
+.util-grab:active {
+    cursor: grabbing;
+}
+
+.util-not-allowed {
+    cursor: not-allowed;
+    background: #475569;
+    color: #cbd5e1;
+}
+
+.util-overflow-box {
+    grid-column: span 2;
+    max-height: 65px;
+    overflow-y: scroll;
+    padding: 0.5rem 0.75rem;
+    background: #080c14;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
 /* Footer */
 .footer {
     border-top: 1px solid var(--border-color);
@@ -613,7 +866,7 @@ pre {
 
 @media (max-width: 860px) {
     .demo-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .nav-wrapper {
         flex-direction: column;
