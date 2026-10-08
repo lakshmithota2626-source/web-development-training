@@ -1,13 +1,13 @@
 {
+  "files.associations": {
+    "*.sql": "sql",
+    "*.psql": "sql"
+  },
   "sql.lintingEnabled": false,
   "mssql.intelliSense.enableSuggestions": false,
   "mssql.intelliSense.enableDiagnostics": false,
   "mssql.enableSqlAuthenticationProvider": false,
   "[sql]": {
     "editor.defaultFormatter": null
-  },
-  "files.associations": {
-    "*.sql": "sql",
-    "*.psql": "sql"
   }
 }
