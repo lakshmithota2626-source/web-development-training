@@ -1,0 +1,8 @@
+{
+  "sql.lintingEnabled": false,
+  "[sql]": {
+    "editor.defaultFormatter": null
+  },
+  "mssql.intelliSense.enableSuggestions": false,
+  "mssql.intelliSense.enableDiagnostics": false
+}

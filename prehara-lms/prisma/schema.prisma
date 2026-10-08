@@ -1,0 +1,452 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ---------------------------------------------------------------------------
+// 1. ORGANISATIONS & TENANCY
+// ---------------------------------------------------------------------------
+
+model Organization {
+  id              String   @id @default(uuid()) @db.Uuid
+  name            String
+  slug            String   @unique // Subdomain (e.g., "iitb", "prehara")
+  customDomain    String?  @unique
+  isDefault       Boolean  @default(false) // True for Prehara D2C org
+  
+  // Per-Org Branding
+  logoUrl         String?
+  primaryColor    String?  @default("#0F172A")
+  accentColor     String?  @default("#2563EB")
+  faviconUrl      String?
+
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  // Relations
+  verifiedDomains  OrganizationDomain[]
+  memberships      Membership[]
+  invitations      Invitation[]
+  roles            Role[]
+  permissions      Permission[]
+  rolePermissions  RolePermission[]
+  profiles         Profile[]
+  consentRecords   ConsentRecord[]
+  auditLogs        AuditLog[]
+  notifications    Notification[]
+  sessions         Session[]
+  verificationTokens VerificationToken[]
+  batches          Batch[]
+  aiChats          AiChat[]
+  platformRevenues PlatformRevenue[]
+
+  @@map("organizations")
+}
+
+model OrganizationDomain {
+  id                String       @id @default(uuid()) @db.Uuid
+  organizationId    String       @map("organization_id") @db.Uuid
+  domain            String       // e.g. "iitb.ac.in"
+  isVerified        Boolean      @default(false)
+  verificationToken String?      @map("verification_token")
+  verifiedAt        DateTime?    @map("verified_at")
+  
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+  deletedAt         DateTime?    @map("deleted_at")
+
+  organization      Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, domain])
+  @@index([domain])
+  @@map("organization_domains")
+}
+
+// ---------------------------------------------------------------------------
+// 2. USERS, MEMBERSHIPS & AUTH
+// ---------------------------------------------------------------------------
+
+// A User is a global identity. NEVER carries an organization_id.
+model User {
+  id                 String       @id @default(uuid()) @db.Uuid
+  name               String?
+  email              String       @unique
+  emailVerified      DateTime?    @map("email_verified")
+  passwordHash       String?      @map("password_hash")
+  image              String?
+
+  // 2FA (TOTP)
+  twoFactorSecret    String?      @map("two_factor_secret")
+  twoFactorEnabled   Boolean      @default(false) @map("two_factor_enabled")
+
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @updatedAt @map("updated_at")
+  deletedAt          DateTime?    @map("deleted_at")
+
+  // Relations
+  accounts           Account[]
+  memberships        Membership[]
+  profiles           Profile[]
+  consentRecords     ConsentRecord[]
+  notifications      Notification[]
+  auditLogsActed     AuditLog[]   @relation("ActorAuditLogs")
+  auditLogsImpersonated AuditLog[] @relation("ImpersonatorAuditLogs")
+  sessions           Session[]
+  invitationsCreated Invitation[] @relation("InvitedByUser")
+  batchesInstructed  Batch[]      @relation("TrainerBatches")
+  aiChats            AiChat[]
+
+  @@map("users")
+}
+
+enum MembershipStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+model Membership {
+  id              String           @id @default(uuid()) @db.Uuid
+  organizationId  String           @map("organization_id") @db.Uuid
+  userId          String           @map("user_id") @db.Uuid
+  roleId          String           @map("role_id") @db.Uuid
+  status          MembershipStatus @default(ACTIVE)
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  deletedAt       DateTime?        @map("deleted_at")
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role            Role             @relation(fields: [roleId], references: [id])
+
+  @@unique([organizationId, userId])
+  @@index([organizationId, status])
+  @@map("memberships")
+}
+
+model Invitation {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  email           String
+  roleId          String       @map("role_id") @db.Uuid
+  token           String       @unique
+  expiresAt       DateTime     @map("expires_at")
+  acceptedAt      DateTime?    @map("accepted_at")
+  invitedById     String       @map("invited_by_id") @db.Uuid
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  deletedAt       DateTime?    @map("deleted_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  role            Role         @relation(fields: [roleId], references: [id])
+  invitedBy       User         @relation("InvitedByUser", fields: [invitedById], references: [id])
+
+  @@index([organizationId, email])
+  @@map("invitations")
+}
+
+model Account {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @map("user_id") @db.Uuid
+  type              String
+  provider          String
+  providerAccountId String   @map("provider_account_id")
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id               String       @id @default(uuid()) @db.Uuid
+  organizationId   String       @map("organization_id") @db.Uuid
+  userId           String       @map("user_id") @db.Uuid
+  sessionToken     String       @unique @map("session_token")
+  expiresAt        DateTime     @map("expires_at")
+  revokedAt        DateTime?    @map("revoked_at")
+  
+  // Impersonation Tracking
+  isImpersonated   Boolean      @default(false) @map("is_impersonated")
+  impersonatedById String?      @map("impersonated_by_id") @db.Uuid
+  
+  userAgent        String?      @map("user_agent")
+  ipAddress        String?      @map("ip_address")
+
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, organizationId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  identifier      String
+  token           String       @unique
+  purpose         String       // "EMAIL_VERIFICATION", "PASSWORD_RESET", "TOTP_SETUP"
+  expiresAt       DateTime     @map("expires_at")
+  createdAt       DateTime     @default(now()) @map("created_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([identifier, token, purpose])
+  @@map("verification_tokens")
+}
+
+// ---------------------------------------------------------------------------
+// 3. ROLES & DYNAMIC PERMISSIONS
+// ---------------------------------------------------------------------------
+
+model Role {
+  id              String           @id @default(uuid()) @db.Uuid
+  organizationId  String           @map("organization_id") @db.Uuid
+  name            String
+  code            String           // "GUEST", "STUDENT", "TRAINER", "ORG_ADMIN", "PLATFORM_ADMIN"
+  description     String?
+  isSystem        Boolean          @default(true)
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  deletedAt       DateTime?        @map("deleted_at")
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  memberships     Membership[]
+  invitations     Invitation[]
+  rolePermissions RolePermission[]
+
+  @@unique([organizationId, code])
+  @@map("roles")
+}
+
+model Permission {
+  id              String           @id @default(uuid()) @db.Uuid
+  organizationId  String           @map("organization_id") @db.Uuid
+  action          String           // "read", "create", "update", "delete", "impersonate", "announce", "grade"
+  resource        String           // "profile", "batch", "grading", "announcement", "revenue", "support_ticket", "ai_chat", "user"
+  description     String?
+
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  rolePermissions RolePermission[]
+
+  @@unique([organizationId, action, resource])
+  @@map("permissions")
+}
+
+model RolePermission {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  roleId          String       @map("role_id") @db.Uuid
+  permissionId    String       @map("permission_id") @db.Uuid
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  role            Role         @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission      Permission   @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, roleId, permissionId])
+  @@map("role_permissions")
+}
+
+// ---------------------------------------------------------------------------
+// 4. PROFILES
+// ---------------------------------------------------------------------------
+
+model Profile {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  userId          String       @map("user_id") @db.Uuid
+
+  college         String?
+  branch          String?
+  graduationYear  Int?         @map("graduation_year")
+  dateOfBirth     DateTime?    @map("date_of_birth") @db.Date
+  skills          String[]     @default([])
+  githubHandle    String?      @map("github_handle")
+  resumeUrl       String?      @map("resume_url")
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  deletedAt       DateTime?    @map("deleted_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([organizationId, graduationYear])
+  @@map("profiles")
+}
+
+// ---------------------------------------------------------------------------
+// 5. CONSENT RECORDS
+// ---------------------------------------------------------------------------
+
+model ConsentRecord {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  userId          String       @map("user_id") @db.Uuid
+  
+  purpose         String       // "TERMS_OF_SERVICE", "PRIVACY_POLICY", "DATA_PROCESSING"
+  policyVersion   String       @map("policy_version")
+  consentedAt     DateTime     @default(now()) @map("consented_at")
+  withdrawnAt     DateTime?    @map("withdrawn_at")
+
+  ipAddress       String?      @map("ip_address")
+  userAgent       String?      @map("user_agent")
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, userId, purpose])
+  @@map("consent_records")
+}
+
+// ---------------------------------------------------------------------------
+// 6. AUDIT LOGS
+// ---------------------------------------------------------------------------
+
+model AuditLog {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  actorId         String       @map("actor_id") @db.Uuid
+  impersonatorId  String?      @map("impersonator_id") @db.Uuid
+  
+  action          String       // "USER_INVITE", "USER_SUSPEND", "USER_RESTORE", "ROLE_CHANGE", "CSV_IMPORT", "IMPERSONATION_START", "IMPERSONATION_STOP"
+  entityType      String       @map("entity_type")
+  entityId        String       @map("entity_id")
+  metadata        Json
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  actor           User         @relation("ActorAuditLogs", fields: [actorId], references: [id])
+  impersonator    User?        @relation("ImpersonatorAuditLogs", fields: [impersonatorId], references: [id])
+
+  @@index([organizationId, action])
+  @@index([organizationId, entityType, entityId])
+  @@index([organizationId, actorId])
+  @@map("audit_logs")
+}
+
+// ---------------------------------------------------------------------------
+// 7. NOTIFICATIONS
+// ---------------------------------------------------------------------------
+
+enum NotificationChannel {
+  IN_APP
+  EMAIL
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+  READ
+}
+
+model Notification {
+  id              String              @id @default(uuid()) @db.Uuid
+  organizationId  String              @map("organization_id") @db.Uuid
+  userId          String              @map("user_id") @db.Uuid
+  
+  title           String
+  message         String
+  type            String
+  channel         NotificationChannel @default(IN_APP)
+  status          NotificationStatus  @default(PENDING)
+  metadata        Json?
+  readAt          DateTime?           @map("read_at")
+
+  createdAt       DateTime            @default(now()) @map("created_at")
+  updatedAt       DateTime            @updatedAt @map("updated_at")
+  deletedAt       DateTime?           @map("deleted_at")
+
+  organization    Organization        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user            User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, userId, status])
+  @@map("notifications")
+}
+
+// ---------------------------------------------------------------------------
+// 8. BATCHES, AI CHAT & PLATFORM REVENUE (Stage 1 Scoping Models)
+// ---------------------------------------------------------------------------
+
+model Batch {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  trainerId       String?      @map("trainer_id") @db.Uuid
+  name            String
+  code            String
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  deletedAt       DateTime?    @map("deleted_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  trainer         User?        @relation("TrainerBatches", fields: [trainerId], references: [id])
+
+  @@unique([organizationId, code])
+  @@index([organizationId, trainerId])
+  @@map("batches")
+}
+
+model AiChat {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  userId          String       @map("user_id") @db.Uuid
+  topic           String
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+  deletedAt       DateTime?    @map("deleted_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, userId])
+  @@map("ai_chats")
+}
+
+model PlatformRevenue {
+  id              String       @id @default(uuid()) @db.Uuid
+  organizationId  String       @map("organization_id") @db.Uuid
+  amountPaise     BigInt       @map("amount_paise") // Rule: money stored as integer paise
+  period          String       // e.g. "2026-Q1"
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, period])
+  @@map("platform_revenues")
+}
